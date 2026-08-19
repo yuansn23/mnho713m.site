@@ -8,457 +8,413 @@
     <meta property="og:title" content="Equipo de Estrategia eToro México">
     <meta property="og:description" content="Análisis de acciones profesional y asesoramiento de inversión.">
     <meta property="og:type" content="website">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f7a4d'/%3E%3Cpath d='M8 22 L14 15 L18 19 L25 11' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 11 H25 V16' stroke='white' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2318e082'/%3E%3Cpath d='M8 22 L14 15 L18 19 L25 11' stroke='%2304130b' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M20 11 H25 V16' stroke='%2304130b' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* ============ Design tokens ============ */
+        /* ============ Tokens ============ */
         :root {
-            --bg: #f6f3ec;
-            --bg-alt: #efe9dd;
-            --surface: #fffdf8;
-            --surface-2: #faf6ee;
-            --ink: #17140f;
-            --ink-2: #4f4738;
-            --ink-3: #8b806d;
-            --line: #e2d9c7;
-            --line-strong: #cfc4ac;
+            --bg: #060907;
+            --bg-2: #0a0f0b;
+            --panel: #0d1410;
+            --panel-2: #111a14;
+            --line: #1b2a20;
+            --line-strong: #2b4032;
 
-            --accent: #0f7a4d;
-            --accent-2: #0c5c3a;
-            --accent-ink: #0b5435;
-            --accent-tint: #e3efe6;
+            --ink: #e8f1ea;
+            --ink-2: #a9b8ac;
+            --ink-3: #64746a;
 
-            --wa: #1fae5f;
-            --wa-2: #178f4c;
+            --accent: #18e082;
+            --accent-strong: #0cc474;
+            --accent-soft: rgba(24,224,130,.12);
+            --on-accent: #04130b;
 
-            --dark-band: #13110c;
-            --dark-band-2: #1d1a13;
+            --danger: #ff5f57;
 
-            --radius-sm: 10px;
-            --radius: 16px;
-            --radius-lg: 24px;
+            --wa: #18e082;
+            --wa-2: #0cc474;
 
-            --shadow-sm: 0 1px 2px rgba(50, 42, 28, .05), 0 6px 16px -8px rgba(50, 42, 28, .12);
-            --shadow-md: 0 2px 4px rgba(50, 42, 28, .06), 0 18px 40px -18px rgba(50, 42, 28, .28);
-            --shadow-lg: 0 4px 8px rgba(50, 42, 28, .06), 0 30px 60px -24px rgba(50, 42, 28, .38);
-
-            --font-sans: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-            --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+            --font-display: "Unbounded", system-ui, sans-serif;
+            --font-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+            --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
 
             --container: 1200px;
-            --container-narrow: 880px;
+            --radius: 12px;
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #12100b;
-                --bg-alt: #191610;
-                --surface: #1c1913;
-                --surface-2: #201c15;
-                --ink: #f0eadc;
-                --ink-2: #bcb3a0;
-                --ink-3: #857c69;
-                --line: #2c271d;
-                --line-strong: #3b3428;
-
-                --accent: #3cae78;
-                --accent-2: #4fc68b;
-                --accent-ink: #6fdba4;
-                --accent-tint: #14261b;
-
-                --wa: #1fae5f;
-                --wa-2: #26c46d;
-
-                --dark-band: #0b0a07;
-                --dark-band-2: #14120c;
-
-                --shadow-sm: 0 1px 2px rgba(0,0,0,.3), 0 6px 16px -8px rgba(0,0,0,.5);
-                --shadow-md: 0 2px 4px rgba(0,0,0,.3), 0 18px 40px -18px rgba(0,0,0,.6);
-                --shadow-lg: 0 4px 8px rgba(0,0,0,.3), 0 30px 60px -24px rgba(0,0,0,.7);
-            }
-        }
-
-        /* ============ Reset & base ============ */
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
         body {
             margin: 0;
-            font-family: var(--font-sans);
-            background: var(--bg);
+            font-family: var(--font-body);
             color: var(--ink);
             line-height: 1.7;
             font-weight: 400;
+            background:
+                radial-gradient(1200px 620px at 12% -6%, rgba(24,224,130,.10), transparent 60%),
+                radial-gradient(900px 520px at 102% -4%, rgba(24,224,130,.06), transparent 55%),
+                var(--bg);
             -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
             overflow-x: hidden;
         }
+        /* grid overlay */
+        body::after {
+            content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+            background-image:
+                linear-gradient(rgba(24,224,130,.028) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(24,224,130,.028) 1px, transparent 1px);
+            background-size: 46px 46px;
+            mask-image: radial-gradient(circle at 50% 0%, #000 30%, transparent 85%);
+            -webkit-mask-image: radial-gradient(circle at 50% 0%, #000 30%, transparent 85%);
+        }
 
-        h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 600; line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 .5em; text-wrap: balance; }
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 .5em; text-wrap: balance; }
         p { margin: 0 0 1em; }
         img { max-width: 100%; height: auto; display: block; }
         a { color: inherit; }
+        ::selection { background: var(--accent); color: var(--on-accent); }
 
-        ::selection { background: var(--accent); color: #fff; }
-
-        /* Grain overlay */
-        body::after {
-            content: "";
-            position: fixed; inset: 0;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: .04;
-            mix-blend-mode: multiply;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
-
-        .skip-link {
-            position: absolute; left: -9999px; top: 0;
-            background: var(--accent); color: #fff; padding: .7rem 1.2rem;
-            border-radius: 0 0 10px 0; z-index: 10000; font-weight: 600;
-        }
+        .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--on-accent); padding: .7rem 1.2rem; border-radius: 0 0 10px 0; z-index: 10000; font-weight: 700; }
         .skip-link:focus { left: 0; }
 
-        /* ============ Layout helpers ============ */
-        .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
-        .container--narrow { max-width: var(--container-narrow); }
-
+        /* ============ Layout ============ */
+        .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); position: relative; z-index: 1; }
         .section { padding: clamp(4rem, 9vw, 7.5rem) 0; position: relative; }
-        .section--alt { background: var(--bg-alt); }
-        .section--tint { background: var(--accent-tint); }
+        .section--alt { background: rgba(255,255,255,.012); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 
         .eyebrow {
             display: inline-flex; align-items: center; gap: .6rem;
-            font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-            color: var(--accent-ink);
-            margin: 0 0 1.1rem;
+            font-family: var(--font-mono); font-size: .72rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+            color: var(--accent); margin: 0 0 1.2rem;
         }
-        .eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--accent); }
+        .eyebrow::before { content: "//"; color: var(--ink-3); }
 
-        .lead { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-2); max-width: 62ch; }
+        .lead { color: var(--ink-2); max-width: 62ch; font-size: clamp(1.02rem, 1.5vw, 1.15rem); }
 
-        .h-display { font-size: clamp(2.15rem, 5vw, 3.4rem); }
-        .h-large { font-size: clamp(1.8rem, 3.6vw, 2.5rem); }
+        .standfirst {
+            font-size: clamp(1.05rem, 1.7vw, 1.28rem);
+            color: var(--ink-2);
+            line-height: 1.6;
+            max-width: 56ch;
+            margin: 0 0 1em;
+            font-weight: 400;
+            border-left: 2px solid var(--line-strong);
+            padding-left: 1.1rem;
+        }
+
+        .h-display { font-size: clamp(1.9rem, 4.6vw, 3.1rem); }
+        .h-large { font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
 
         /* ============ Buttons ============ */
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
-            font-family: var(--font-sans); font-weight: 600; font-size: 1rem; letter-spacing: .01em;
-            padding: .95rem 1.8rem; border-radius: 999px; border: 0; cursor: pointer;
-            text-decoration: none; white-space: nowrap;
-            transition: transform .25s cubic-bezier(.2,.6,.2,1), background .25s, box-shadow .25s, color .25s;
+            font-family: var(--font-body); font-weight: 700; font-size: 1rem;
+            padding: 1rem 1.9rem; border-radius: 10px; border: 0; cursor: pointer; text-decoration: none; white-space: nowrap;
+            transition: transform .22s cubic-bezier(.2,.6,.2,1), background .22s, box-shadow .22s;
         }
         .btn .wa { width: 1.15em; height: 1.15em; flex: none; }
         .btn:active { transform: translateY(1px) scale(.98); }
-        .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+        .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
         .btn-wa {
-            background: var(--wa); color: #fff;
-            box-shadow: 0 14px 30px -12px rgba(31,174,95,.6);
+            background: var(--accent); color: var(--on-accent);
+            box-shadow: 0 0 0 1px rgba(24,224,130,.35), 0 18px 44px -16px rgba(24,224,130,.55);
         }
-        .btn-wa:hover { background: var(--wa-2); transform: translateY(-2px); box-shadow: 0 20px 40px -14px rgba(31,174,95,.65); }
+        .btn-wa:hover { background: var(--accent-strong); transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(24,224,130,.4), 0 24px 52px -16px rgba(24,224,130,.6); }
 
-        .btn-outline {
-            background: transparent; color: var(--ink);
-            border: 1.5px solid var(--line-strong);
-        }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent-ink); transform: translateY(-2px); }
+        .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
-        .btn-light { background: #fff; color: var(--accent-ink); box-shadow: 0 14px 30px -14px rgba(0,0,0,.5); }
-        .btn-light:hover { transform: translateY(-2px); }
-
-        /* WhatsApp glyph */
         .wa { display: inline-block; }
         .wa svg { width: 100%; height: 100%; fill: currentColor; }
 
-        /* ============ Header ============ */
-        .site-header {
-            position: sticky; top: 0; z-index: 500;
-            background: color-mix(in srgb, var(--bg) 82%, transparent);
-            -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+        /* ============ Terminal panel ============ */
+        .panel {
+            background: linear-gradient(180deg, var(--panel), var(--bg-2));
+            border: 1px solid var(--line); border-radius: var(--radius);
+            position: relative;
+            box-shadow: 0 30px 60px -40px rgba(0,0,0,.8);
+        }
+        .panel-head {
+            display: flex; align-items: center; gap: .6rem; padding: .6rem .95rem;
             border-bottom: 1px solid var(--line);
+            font-family: var(--font-mono); font-size: .68rem; letter-spacing: .1em; color: var(--ink-3); text-transform: uppercase;
         }
-        .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 70px; }
-        .brand {
-            font-family: var(--font-serif); font-weight: 600; font-size: 1.22rem;
-            letter-spacing: -0.01em; text-decoration: none; display: flex; align-items: center; gap: .55rem;
-        }
-        .brand-mark {
-            width: 30px; height: 30px; border-radius: 8px; background: var(--accent);
-            display: grid; place-items: center; color: #fff; flex: none;
-        }
-        .brand-mark svg { width: 17px; height: 17px; fill: none; stroke: #fff; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-        .nav-links { display: flex; gap: 1.6rem; align-items: center; list-style: none; margin: 0; padding: 0; }
-        .nav-links a {
-            text-decoration: none; font-size: .92rem; font-weight: 500; color: var(--ink-2);
-            position: relative; padding: .3rem 0; transition: color .2s;
-        }
-        .nav-links a::after {
-            content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: var(--accent);
-            transition: width .25s;
-        }
-        .nav-links a:hover { color: var(--ink); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-cta { padding: .6rem 1.25rem; font-size: .92rem; }
+        .panel-head .dots { display: flex; gap: 5px; margin-right: .4rem; }
+        .panel-head .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line-strong); }
+        .panel-head .dots i:nth-child(1) { background: #ff5f57; }
+        .panel-head .dots i:nth-child(2) { background: #febc2e; }
+        .panel-head .dots i:nth-child(3) { background: #28c840; }
+        .panel-body { padding: 1.5rem 1.6rem; }
 
-        @media (max-width: 860px) {
-            .nav-links { display: none; }
+        /* HUD corner brackets */
+        .bracket { position: relative; }
+        .bracket::before, .bracket::after {
+            content: ""; position: absolute; width: 15px; height: 15px; border: 2px solid var(--accent); pointer-events: none; z-index: 2;
         }
+        .bracket::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
+        .bracket::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: 8px; }
+
+        /* ============ Status bar / ticker ============ */
+        .statusbar {
+            background: var(--bg-2); border-bottom: 1px solid var(--line);
+            font-family: var(--font-mono); font-size: .72rem; color: var(--ink-3);
+            display: flex; align-items: center; gap: 1.4rem; padding: .5rem 0; overflow: hidden; position: relative; z-index: 2;
+        }
+        .live { display: inline-flex; align-items: center; gap: .5rem; color: var(--accent); letter-spacing: .14em; font-weight: 600; flex: none; }
+        .live .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(24,224,130,.55); animation: ping 1.8s infinite; }
+        @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(24,224,130,.5); } 70% { box-shadow: 0 0 0 8px rgba(24,224,130,0); } 100% { box-shadow: 0 0 0 0 rgba(24,224,130,0); } }
+        .ticker { overflow: hidden; flex: 1; }
+        .ticker-track { display: flex; gap: 2.6rem; white-space: nowrap; width: max-content; animation: scroll 34s linear infinite; }
+        .ticker-track span { color: var(--ink-2); }
+        .ticker-track b { color: var(--ink-3); font-weight: 400; margin-left: 2.6rem; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* ============ Header ============ */
+        .site-header { position: sticky; top: 0; z-index: 500; background: rgba(6,9,7,.8); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+        .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 66px; }
+        .brand { font-family: var(--font-mono); font-weight: 700; font-size: .95rem; letter-spacing: .04em; text-decoration: none; display: flex; align-items: center; gap: .6rem; }
+        .brand-mark { width: 28px; height: 28px; border-radius: 7px; background: var(--accent); display: grid; place-items: center; color: var(--on-accent); flex: none; box-shadow: 0 0 18px rgba(24,224,130,.5); }
+        .brand-mark svg { width: 16px; height: 16px; fill: none; stroke: var(--on-accent); stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { font-family: var(--font-mono); font-size: .8rem; font-weight: 500; letter-spacing: .04em; color: var(--ink-2); text-decoration: none; transition: color .2s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta { padding: .6rem 1.2rem; font-size: .88rem; }
+        @media (max-width: 860px) { .nav-links { display: none; } }
 
         /* ============ Hero ============ */
-        .hero { padding: clamp(3.5rem, 8vw, 7rem) 0 clamp(4rem, 8vw, 6rem); }
-        .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: center; }
-        .hero-title { font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.04; margin-bottom: 1.4rem; }
-        .hero-title em { font-style: italic; font-weight: 500; color: var(--accent-ink); }
-        .hero-copy p { color: var(--ink-2); max-width: 58ch; }
-        .hero-copy p.hero-sub { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: var(--ink); }
-        .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 2rem; }
+        .hero { padding: clamp(3rem, 7vw, 6rem) 0 clamp(4rem, 8vw, 6rem); }
+        .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: center; }
+        .hero-title { font-size: clamp(2.1rem, 5.4vw, 4rem); line-height: 1.06; margin-bottom: 1.5rem; }
+        .hero-title .glow { color: var(--accent); text-shadow: 0 0 26px rgba(24,224,130,.4); }
+        .hero-copy p { color: var(--ink-2); max-width: 60ch; }
+        .hero-copy p.hero-sub { font-size: clamp(1.05rem, 1.5vw, 1.2rem); color: var(--ink); }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+        .hero-meta { display: flex; gap: 1.8rem; margin-top: 2.2rem; flex-wrap: wrap; }
+        .hero-meta .m { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+        .hero-meta .m b { display: block; font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); letter-spacing: 0; text-transform: none; font-weight: 600; }
 
-        .hero-media { position: relative; }
+        .hero-media .panel-body { padding: 0; }
         .hero-figure { position: relative; margin: 0; }
-        .hero-figure::after {
-            content: ""; position: absolute; top: -1.1rem; right: -1.1rem; width: 58%; height: 58%;
-            border-top: 3px solid var(--accent); border-right: 3px solid var(--accent);
-            border-radius: 0 var(--radius-lg) 0 0; z-index: 0; pointer-events: none;
-        }
-        .hero-figure img {
-            position: relative; z-index: 1; width: 100%; aspect-ratio: 4/5; object-fit: cover;
-            border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);
-        }
-        .hero-badge {
-            position: absolute; z-index: 2; left: -1rem; bottom: 2rem;
-            background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-            padding: .8rem 1.1rem; box-shadow: var(--shadow-md);
-            display: flex; align-items: center; gap: .7rem; font-size: .86rem; font-weight: 600;
-        }
-        .hero-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 0 rgba(31,174,95,.5); animation: ping 2s infinite; }
-
-        @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(31,174,95,.5); } 70% { box-shadow: 0 0 0 9px rgba(31,174,95,0); } 100% { box-shadow: 0 0 0 0 rgba(31,174,95,0); } }
-
-        @media (max-width: 860px) {
-            .hero-grid { grid-template-columns: 1fr; }
-            .hero-media { order: -1; max-width: 420px; }
+        .hero-figure img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 0 0 var(--radius) var(--radius); }
+        .hero-figure .scan { position: absolute; inset: 0; pointer-events: none; border-radius: 0 0 var(--radius) var(--radius); background: linear-gradient(180deg, transparent 0%, rgba(24,224,130,.06) 50%, transparent 100%); mix-blend-mode: screen; }
+        .hero-signal {
+            position: absolute; left: 14px; bottom: 14px; z-index: 3;
+            background: rgba(6,9,7,.82); border: 1px solid var(--line-strong); border-radius: 9px;
+            padding: .55rem .85rem; display: flex; align-items: center; gap: .55rem;
+            font-family: var(--font-mono); font-size: .72rem; color: var(--accent); letter-spacing: .05em; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
         }
 
-        /* ============ Features (manifesto) ============ */
-        .features-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .features-head h2 { max-width: 20ch; margin: 0; }
-        .manifesto { border-top: 1px solid var(--line-strong); }
-        .manifesto-item {
-            display: grid; grid-template-columns: 90px 1fr; gap: 1.5rem; align-items: start;
-            padding: 2.2rem 0; border-bottom: 1px solid var(--line);
-        }
-        .manifesto-num { font-family: var(--font-serif); font-size: 2.4rem; font-weight: 500; color: var(--ink-3); line-height: 1; font-variant-numeric: tabular-nums; }
-        .manifesto-item .icon { font-size: 1.9rem; line-height: 1; margin-bottom: .4rem; }
-        .manifesto-item h3 { font-size: 1.5rem; margin-bottom: .35rem; }
-        .manifesto-item p { color: var(--ink-2); max-width: 60ch; margin: 0; }
+        @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hero-media { order: -1; max-width: 440px; } }
 
-        @media (max-width: 640px) {
-            .manifesto-item { grid-template-columns: 1fr; gap: .75rem; }
+        /* ============ Services (manifesto) ============ */
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+        .service {
+            background: linear-gradient(180deg, var(--panel), var(--bg-2));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem 1.5rem;
+            transition: transform .3s, border-color .3s;
         }
+        .service:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .service .idx { font-family: var(--font-mono); color: var(--ink-3); font-size: .78rem; letter-spacing: .12em; margin-bottom: 1.1rem; }
+        .service .icon { font-size: 1.7rem; line-height: 1; margin-bottom: 1rem; }
+        .service h3 { font-size: 1.18rem; margin-bottom: .6rem; }
+        .service p { color: var(--ink-2); font-size: .95rem; margin: 0; }
+        @media (max-width: 860px) { .services-grid { grid-template-columns: 1fr; } }
 
-        /* ============ Community (numbered list) ============ */
-        .community-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
-        .community-grid .sticky-title { position: sticky; top: 100px; }
+        /* ============ Community ============ */
+        .community-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
+        .sticky-title { position: sticky; top: 90px; }
         .numbered-list { list-style: none; margin: 0; padding: 0; }
         .numbered-list li {
-            display: grid; grid-template-columns: 52px 1fr; gap: 1.2rem; align-items: start;
-            padding: 1.35rem 0; border-bottom: 1px solid var(--line);
+            display: grid; grid-template-columns: 56px 1fr; gap: 1.2rem; align-items: start;
+            padding: 1.25rem .2rem; border-bottom: 1px solid var(--line);
         }
         .numbered-list li:first-child { border-top: 1px solid var(--line); }
-        .numbered-list .n {
-            font-family: var(--font-serif); font-size: 1.5rem; font-weight: 500; color: var(--accent-ink);
-            font-variant-numeric: tabular-nums; line-height: 1.2;
+        .numbered-list .n { font-family: var(--font-mono); font-weight: 600; color: var(--accent); font-size: 1.05rem; line-height: 1.4; }
+        .numbered-list .t { font-size: 1.08rem; font-weight: 500; line-height: 1.5; }
+        .numbered-list li.hl {
+            background: linear-gradient(90deg, rgba(24,224,130,.16), rgba(24,224,130,.04));
+            border: 1px solid var(--accent); border-radius: var(--radius); padding: 1.25rem 1.4rem; margin-top: 1rem;
         }
-        .numbered-list .t { font-size: 1.12rem; font-weight: 500; line-height: 1.5; }
-        .numbered-list li.hl { background: var(--accent); color: #fff; border-radius: var(--radius); padding: 1.35rem 1.4rem; border-bottom: 0; margin-top: 1rem; }
-        .numbered-list li.hl .n { color: rgba(255,255,255,.8); }
-
+        .numbered-list li.hl .n { color: var(--accent); }
         .note {
-            margin-top: 2.2rem; padding: 1.4rem 1.6rem; border-radius: var(--radius);
-            background: var(--surface-2); border: 1px solid var(--line); border-left: 4px solid var(--accent);
-            color: var(--ink-2); font-size: .98rem;
+            margin-top: 2rem; padding: 1.25rem 1.5rem; border-radius: var(--radius);
+            border: 1px solid var(--line); border-left: 3px solid var(--accent);
+            background: var(--panel); color: var(--ink-2); font-size: .96rem;
         }
         .note strong { color: var(--ink); }
+        @media (max-width: 860px) { .community-grid { grid-template-columns: 1fr; } .sticky-title { position: static; } }
 
-        @media (max-width: 860px) { .community-grid { grid-template-columns: 1fr; } .community-grid .sticky-title { position: static; } }
-
-        /* ============ Why choose us ============ */
+        /* ============ Approach (why) ============ */
         .why-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
-        .why-media figure { margin: 0; position: relative; }
-        .why-media img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; object-fit: cover; }
+        .why-media figure { margin: 0; }
+        .why-media img { border-radius: var(--radius); width: 100%; object-fit: cover; border: 1px solid var(--line); }
         .why-media .cta-wrap { margin-top: 1.5rem; }
         .stacked { display: flex; flex-direction: column; gap: 1.1rem; }
         .stacked-card {
-            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-            padding: 1.6rem 1.7rem; box-shadow: var(--shadow-sm);
-            transition: transform .3s cubic-bezier(.2,.6,.2,1), box-shadow .3s, border-color .3s;
+            background: linear-gradient(180deg, var(--panel), var(--bg-2));
+            border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem 1.6rem;
+            transition: transform .3s, border-color .3s;
         }
-        .stacked-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
-        .stacked-card .k { display: flex; align-items: center; gap: .7rem; margin-bottom: .6rem; }
-        .stacked-card .idx { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--accent); }
-        .stacked-card h3 { font-size: 1.35rem; margin: 0 0 .35rem; }
+        .stacked-card:hover { transform: translateX(5px); border-color: var(--accent); }
+        .stacked-card .idx { font-family: var(--font-mono); color: var(--accent); font-size: .78rem; letter-spacing: .12em; display: block; margin-bottom: .6rem; }
+        .stacked-card h3 { font-size: 1.3rem; margin-bottom: .4rem; }
         .stacked-card p { color: var(--ink-2); margin: 0; }
-
         @media (max-width: 860px) { .why-grid { grid-template-columns: 1fr; } }
 
         /* ============ Tracking ============ */
         .tracking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 4vw, 4rem); }
         .tracking-grid p { color: var(--ink-2); font-size: 1.05rem; }
         .highlight-panel {
-            background: var(--dark-band); color: #f3edde; border-radius: var(--radius-lg);
-            padding: clamp(1.8rem, 4vw, 3rem); margin-top: 3rem;
-            position: relative; overflow: hidden;
+            border: 1px solid var(--line-strong); border-radius: var(--radius); margin-top: 3rem;
+            padding: clamp(1.8rem, 4vw, 2.8rem); position: relative; overflow: hidden;
+            background: linear-gradient(120deg, rgba(24,224,130,.14), rgba(24,224,130,.02) 60%);
         }
-        .highlight-panel::before {
-            content: ""; position: absolute; right: -60px; top: -60px; width: 220px; height: 220px;
-            border-radius: 50%; background: radial-gradient(circle, var(--accent) 0%, transparent 70%); opacity: .4;
-        }
-        .highlight-panel h3 { color: #fff; font-size: clamp(1.5rem, 3vw, 2rem); }
-        .highlight-panel p { color: #cfc6b2; position: relative; z-index: 1; max-width: 62ch; }
-        .highlight-panel .strong { color: #fff; font-weight: 600; }
+        .highlight-panel h3 { color: var(--ink); }
+        .highlight-panel p { color: var(--ink-2); position: relative; z-index: 1; max-width: 64ch; }
+        .highlight-panel .strong { color: var(--accent); font-weight: 600; }
         .tracking-media { margin-top: 3rem; text-align: center; }
-        .tracking-media img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 460px; margin: 0 auto 1.8rem; width: 100%; }
-
+        .tracking-media img { border-radius: var(--radius); border: 1px solid var(--line); max-width: 460px; margin: 0 auto 1.8rem; width: 100%; }
         @media (max-width: 860px) { .tracking-grid { grid-template-columns: 1fr; } }
 
         /* ============ Steps timeline ============ */
-        .steps-head { text-align: left; max-width: 30ch; margin-bottom: 3rem; }
-        .timeline { position: relative; margin: 0; padding: 0; list-style: none; }
-        .timeline::before {
-            content: ""; position: absolute; left: 27px; top: 6px; bottom: 6px; width: 2px;
-            background: linear-gradient(var(--line-strong), var(--line-strong));
-        }
-        .timeline li { display: grid; grid-template-columns: 56px 1fr; gap: 1.4rem; padding: 1.15rem 0; align-items: start; }
+        .method-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: start; }
+        .steps-head { position: sticky; top: 90px; }
+        .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+        @media (max-width: 860px) { .method-grid { grid-template-columns: 1fr; } .steps-head { position: static; } }
+        .timeline::before { content: ""; position: absolute; left: 26px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--line-strong), var(--accent)); }
+        .timeline li { display: grid; grid-template-columns: 56px 1fr; gap: 1.5rem; padding: 1.1rem 0; align-items: start; }
         .timeline .node {
-            width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line-strong);
-            display: grid; place-items: center; font-family: var(--font-serif); font-weight: 600; font-size: 1.1rem; color: var(--accent-ink);
-            position: relative; z-index: 1; box-shadow: var(--shadow-sm);
+            width: 52px; height: 52px; border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line-strong);
+            display: grid; place-items: center; font-family: var(--font-mono); font-weight: 600; color: var(--accent); position: relative; z-index: 1;
+            box-shadow: 0 0 0 4px rgba(24,224,130,.05);
         }
-        .timeline li.hl .node { background: var(--accent); border-color: var(--accent); color: #fff; }
-        .timeline .body { padding-top: .85rem; }
-        .timeline .body .t { font-size: 1.15rem; font-weight: 500; }
-        .timeline li.hl .body .t { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 600; color: var(--accent-ink); }
+        .timeline li.hl .node { background: var(--accent); border-color: var(--accent); color: var(--on-accent); box-shadow: 0 0 24px rgba(24,224,130,.45); }
+        .timeline .body { padding-top: .7rem; }
+        .timeline .body .t { font-size: 1.13rem; font-weight: 500; }
+        .timeline li.hl .body .t { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--accent); }
         .steps-media { text-align: center; margin-top: 3rem; }
-        .steps-media img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 460px; margin: 0 auto 1.8rem; width: 100%; }
+        .steps-media img { border-radius: var(--radius); border: 1px solid var(--line); max-width: 460px; margin: 0 auto 1.8rem; width: 100%; }
 
         /* ============ Testimonials ============ */
-        .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
-        .quote {
-            background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-            padding: 1.8rem 1.9rem; box-shadow: var(--shadow-sm); position: relative;
-        }
-        .quote.accent { border-left: 4px solid var(--accent); }
-        .quote .mark { font-family: var(--font-serif); font-size: 3rem; line-height: .6; color: var(--accent); display: block; margin-bottom: .9rem; }
-        .quote .who { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 600; margin-bottom: .5rem; }
-        .quote p { color: var(--ink-2); margin: 0; }
-
+        .testi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+        .quote { background: linear-gradient(180deg, var(--panel), var(--bg-2)); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem 1.7rem; }
+        .quote.accent { border-color: var(--line-strong); }
+        .quote .tag { font-family: var(--font-mono); color: var(--accent); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 1rem; }
+        .quote .who { font-family: var(--font-mono); font-weight: 600; font-size: 1rem; margin-bottom: .7rem; color: var(--ink); }
+        .quote .who::before { content: "> "; color: var(--accent); }
+        .quote p { color: var(--ink-2); margin: 0; font-size: .97rem; }
         @media (max-width: 720px) { .testi-grid { grid-template-columns: 1fr; } }
 
         /* ============ CTA ============ */
-        .cta { background: var(--dark-band); color: #f3edde; text-align: center; position: relative; overflow: hidden; }
-        .cta::before {
-            content: ""; position: absolute; left: 50%; top: -40%; transform: translateX(-50%);
-            width: 900px; height: 900px; border-radius: 50%;
-            background: radial-gradient(circle, var(--accent) 0%, transparent 65%); opacity: .28;
-        }
-        .cta .container { position: relative; z-index: 1; }
-        .cta blockquote {
-            margin: 0 auto 2.4rem; padding: 0; border: 0;
-            font-family: var(--font-serif); font-style: italic; font-weight: 400;
-            font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.35; color: #d9d0bc; max-width: 30ch;
-        }
-        .cta h2 { color: #fff; }
-        .cta p { color: #c9c0ad; max-width: 60ch; margin-left: auto; margin-right: auto; }
+        .cta { text-align: center; position: relative; overflow: hidden; }
+        .cta::before { content: ""; position: absolute; left: 50%; top: -45%; transform: translateX(-50%); width: 880px; height: 880px; border-radius: 50%; background: radial-gradient(circle, rgba(24,224,130,.20) 0%, transparent 60%); }
+        .cta blockquote { margin: 0 auto 2.4rem; padding: 0; border: 0; font-family: var(--font-mono); font-style: normal; font-size: clamp(1.1rem, 2.2vw, 1.4rem); line-height: 1.5; color: var(--ink-2); max-width: 46ch; }
+        .cta blockquote::before { content: "“"; color: var(--accent); font-size: 2em; line-height: 0; vertical-align: -.3em; margin-right: .1em; }
+        .cta blockquote::after { content: "”"; color: var(--accent); font-size: 2em; line-height: 0; vertical-align: -.3em; margin-left: .1em; }
+        .cta h2 { color: var(--ink); }
+        .cta p { color: var(--ink-2); max-width: 60ch; margin-left: auto; margin-right: auto; }
         .cta .btn { margin-top: 1.5rem; }
 
         /* ============ Disclaimer ============ */
-        .disclaimer { background: var(--bg-alt); border-top: 1px solid var(--line); }
-        .legal { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(1.6rem, 3vw, 2.5rem); box-shadow: var(--shadow-sm); }
-        .legal h3 { display: flex; align-items: center; gap: .7rem; color: var(--ink); }
-        .legal h3 .warn { color: var(--accent); display: inline-flex; }
-        .legal h3 .warn svg { width: 1.4em; height: 1.4em; }
+        .disclaimer { background: var(--bg-2); border-top: 1px solid var(--line); }
+        .legal { border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(1.6rem, 3vw, 2.4rem); background: var(--panel); }
+        .legal h3 { display: flex; align-items: center; gap: .7rem; font-size: 1.35rem; }
+        .legal h3 .warn { color: var(--danger); display: inline-flex; }
+        .legal h3 .warn svg { width: 1.3em; height: 1.3em; }
         .legal-body { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem 2rem; font-size: .9rem; color: var(--ink-2); }
         .legal-body p { margin: 0 0 .8rem; }
         .legal-body strong { color: var(--ink); }
         .legal-body .full { grid-column: 1 / -1; }
-
         @media (max-width: 720px) { .legal-body { grid-template-columns: 1fr; } }
 
         /* ============ Footer ============ */
-        .site-footer { background: var(--dark-band); color: #c9c0ad; padding: clamp(3.5rem, 7vw, 5rem) 0 7rem; }
-        .footer-grid { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
-        .site-footer h3 { color: #fff; font-size: 1.6rem; margin: 0; }
-        .site-footer .tagline { color: #8f8672; }
-        .footer-legal { font-size: .82rem; color: #7a7260; line-height: 1.8; max-width: 60ch; margin: 0 auto; }
+        .site-footer { background: #040604; border-top: 1px solid var(--line); padding: clamp(3.5rem, 7vw, 5rem) 0 7rem; }
+        .footer-grid { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.4rem; }
+        .site-footer h3 { color: var(--ink); font-size: 1.4rem; }
+        .site-footer .tagline { color: var(--ink-3); font-family: var(--font-mono); font-size: .84rem; }
+        .footer-legal { font-size: .8rem; color: var(--ink-3); line-height: 1.9; max-width: 62ch; margin: 0 auto; }
         .footer-legal p { margin: 0 0 .4rem; }
 
-        /* ============ Floating elements ============ */
-        .floating-whatsapp {
-            position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 900;
-        }
+        /* ============ Floating ============ */
+        .floating-whatsapp { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 900; }
         .floating-whatsapp button {
             width: 58px; height: 58px; border-radius: 50%; border: 0; cursor: pointer;
-            background: var(--wa); color: #fff; display: grid; place-items: center;
-            box-shadow: 0 12px 28px -10px rgba(31,174,95,.7);
-            transition: transform .3s cubic-bezier(.2,.6,.2,1), background .3s;
-            animation: breathe 2.4s ease-in-out infinite;
+            background: var(--accent); color: var(--on-accent); display: grid; place-items: center;
+            box-shadow: 0 0 0 1px rgba(24,224,130,.4), 0 14px 34px -10px rgba(24,224,130,.6);
+            transition: transform .3s, background .3s; animation: breathe 2.4s ease-in-out infinite;
         }
-        .floating-whatsapp button:hover { background: var(--wa-2); }
+        .floating-whatsapp button:hover { background: var(--accent-strong); }
         .floating-whatsapp .wa { width: 26px; height: 26px; }
-        .floating-whatsapp .badge {
-            position: absolute; top: -3px; right: -3px; min-width: 22px; height: 22px; padding: 0 5px;
-            background: #e53e3e; color: #fff; font-size: .72rem; font-weight: 700; border-radius: 999px;
-            display: grid; place-items: center; border: 2px solid var(--bg);
-        }
-
+        .floating-whatsapp .badge { position: absolute; top: -3px; right: -3px; min-width: 22px; height: 22px; padding: 0 5px; background: var(--danger); color: #fff; font-size: .72rem; font-weight: 700; border-radius: 999px; display: grid; place-items: center; border: 2px solid var(--bg); }
         @keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 
-        .floating-bottom {
-            position: fixed; bottom: 0; left: 0; right: 0; z-index: 900; padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,.06));
-        }
+        .floating-bottom { position: fixed; bottom: 0; left: 0; right: 0; z-index: 900; padding: 14px 16px calc(14px + env(safe-area-inset-bottom)); }
         .floating-bottom .bar {
-            max-width: var(--container); margin: 0 auto;
-            background: var(--wa); color: #fff; border-radius: 999px;
-            display: flex; align-items: center; justify-content: center; gap: .6rem;
-            padding: .95rem 1.5rem; font-weight: 600; font-size: 1.05rem; cursor: pointer;
-            box-shadow: 0 16px 40px -12px rgba(31,174,95,.7);
-            transition: transform .25s, background .25s;
+            max-width: var(--container); margin: 0 auto; background: var(--accent); color: var(--on-accent);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: .6rem;
+            padding: 1rem 1.5rem; font-weight: 700; font-size: 1.02rem; cursor: pointer;
+            box-shadow: 0 0 0 1px rgba(24,224,130,.35), 0 18px 44px -14px rgba(24,224,130,.55);
+            transition: transform .22s, background .22s;
         }
-        .floating-bottom .bar:hover { background: var(--wa-2); transform: translateY(-2px); }
-        .floating-bottom .wa { width: 22px; height: 22px; }
+        .floating-bottom .bar:hover { background: var(--accent-strong); transform: translateY(-2px); }
+        .floating-bottom .wa { width: 21px; height: 21px; }
 
-        /* ============ Reveal on scroll ============ */
-        .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s cubic-bezier(.2,.6,.2,1), transform .7s cubic-bezier(.2,.6,.2,1); transition-delay: var(--d, 0s); }
+        /* ============ Reveal ============ */
+        .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s cubic-bezier(.2,.6,.2,1), transform .6s cubic-bezier(.2,.6,.2,1); transition-delay: var(--d, 0s); }
         .js .reveal.in { opacity: 1; transform: none; }
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             .js .reveal { opacity: 1; transform: none; transition: none; }
             .floating-whatsapp button { animation: none; }
-            * { animation-duration: .001ms !important; }
+            .ticker-track { animation: none; }
         }
     </style>
 </head>
 <body>
     <a class="skip-link" href="#main">Saltar al contenido</a>
 
+    <!-- Status bar / ticker -->
+    <div class="statusbar">
+        <div class="container" style="display:flex; align-items:center; gap:1.6rem;">
+            <span class="live"><span class="dot"></span>EN VIVO</span>
+            <div class="ticker">
+                <div class="ticker-track">
+                    <span>Análisis de acciones profesional</span><b>//</b>
+                    <span>Noticias gratuitas en tiempo real</span><b>//</b>
+                    <span>Estrategias de negociación</span><b>//</b>
+                    <span>Análisis técnico con una década de experiencia</span><b>//</b>
+                    <span>Reducción de riesgos</span><b>//</b>
+                    <span>Aumente sus posibilidades</span><b>//</b>
+                    <span>Señales de mercado claras</span><b>//</b>
+                    <span>Análisis de acciones profesional</span><b>//</b>
+                    <span>Noticias gratuitas en tiempo real</span><b>//</b>
+                    <span>Estrategias de negociación</span><b>//</b>
+                    <span>Análisis técnico con una década de experiencia</span><b>//</b>
+                    <span>Reducción de riesgos</span><b>//</b>
+                    <span>Aumente sus posibilidades</span><b>//</b>
+                    <span>Señales de mercado claras</span><b>//</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="site-header">
         <div class="container">
             <nav class="nav" aria-label="Principal">
                 <a class="brand" href="#inicio">
-                    <span class="brand-mark" aria-hidden="true">
-                        <svg viewBox="0 0 24 24"><path d="M4 18 L9 12 L13 15 L20 7"/><path d="M15 7 H20 V12"/></svg>
-                    </span>
-                    eToro México
+                    <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18 L9 12 L13 15 L20 7"/><path d="M15 7 H20 V12"/></svg></span>
+                    ETORO_MX
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#beneficios">Beneficios</a></li>
-                    <li><a href="#estrategia">Estrategia</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#comunidad">Comunidad</a></li>
+                    <li><a href="#enfoque">Enfoque</a></li>
                     <li><a href="#metodo">Método</a></li>
                     <li><a href="#testimonios">Testimonios</a></li>
                 </ul>
@@ -475,8 +431,8 @@
         <section class="hero" id="inicio">
             <div class="container hero-grid">
                 <div class="hero-copy reveal">
-                    <p class="eyebrow">Análisis de acciones profesional</p>
-                    <h1 class="hero-title">¡Bienvenido al Equipo de Estrategia de <em>eToro México</em>!</h1>
+                    <p class="eyebrow">Sistema de análisis profesional</p>
+                    <h1 class="hero-title">¡Bienvenido al Equipo de Estrategia de <span class="glow">eToro México</span>!</h1>
                     <p class="hero-sub">
                         Compartimos diariamente noticias gratuitas en tiempo real sobre acciones de alto crecimiento y populares, estrategias de negociación previas a la apertura del mercado y técnicas prácticas de análisis. Bajo la dirección de un equipo de analistas profesionales y el profesor Elad Ravi, queremos ayudarle a aumentar su éxito en las inversiones y minimizar los riesgos del mercado.
                     </p>
@@ -490,68 +446,75 @@
                             Añadir a WhatsApp ahora
                         </button>
                     </div>
+                    <div class="hero-meta">
+                        <div class="m">Década de experiencia<b>Análisis técnico</b></div>
+                        <div class="m">Señales diarias<b>Antes de la apertura</b></div>
+                        <div class="m">Formato<b>Comunidad privada</b></div>
+                    </div>
                 </div>
 
                 <div class="hero-media reveal" style="--d:.1s">
-                    <figure class="hero-figure">
-                        <img src="img/1.png" alt="Professor Elad Ravi">
-                        <figcaption class="hero-badge"><span class="dot"></span> Señales en tiempo real</figcaption>
-                    </figure>
+                    <div class="panel bracket">
+                        <div class="panel-head">
+                            <span class="dots"><i></i><i></i><i></i></span>
+                            professor_elad_ravi.png
+                        </div>
+                        <figure class="hero-figure">
+                            <img src="img/1.png" alt="Professor Elad Ravi">
+                            <span class="scan"></span>
+                            <span class="hero-signal"><span class="live"><span class="dot"></span></span> Señal en tiempo real</span>
+                        </figure>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Features -->
-        <section class="section section--alt" id="beneficios">
+        <!-- Services -->
+        <section class="section section--alt" id="servicios">
             <div class="container">
-                <div class="features-head reveal">
-                    <p class="eyebrow">Lo que ofrecemos</p>
-                    <h2 class="h-large">Inversión más inteligente, en un solo lugar.</h2>
+                <div class="reveal">
+                    <p class="eyebrow">Servicios</p>
+                    <h2 class="h-display" style="max-width:20ch;">Inversión más inteligente, en un solo lugar.</h2>
                 </div>
-                <div class="manifesto reveal">
-                    <div class="manifesto-item">
-                        <span class="manifesto-num">01</span>
-                        <div>
-                            <div class="icon" aria-hidden="true">🚀</div>
-                            <h3>Para un negocio más inteligente y rápido.</h3>
-                            <p>Mostramos a cada inversor cómo superar desafíos técnicos y utilizar la inteligencia artificial para mejorar el rendimiento.</p>
-                        </div>
+                <div class="services-grid" style="margin-top:2.6rem;">
+                    <div class="service reveal">
+                        <div class="idx">01 / 03</div>
+                        <div class="icon" aria-hidden="true">🚀</div>
+                        <h3>Para un negocio más inteligente y rápido.</h3>
+                        <p>Mostramos a cada inversor cómo superar desafíos técnicos y utilizar la inteligencia artificial para mejorar el rendimiento.</p>
                     </div>
-                    <div class="manifesto-item">
-                        <span class="manifesto-num">02</span>
-                        <div>
-                            <div class="icon" aria-hidden="true">📈</div>
-                            <h3>¡Análisis de tendencias de inversión!</h3>
-                            <p>A través de comentarios sobre gráficos, los inversores obtienen consejos de inversión rentables que incluso los principiantes pueden aprender.</p>
-                        </div>
+                    <div class="service reveal" style="--d:.06s">
+                        <div class="idx">02 / 03</div>
+                        <div class="icon" aria-hidden="true">📈</div>
+                        <h3>¡Análisis de tendencias de inversión!</h3>
+                        <p>A través de comentarios sobre gráficos, los inversores obtienen consejos de inversión rentables que incluso los principiantes pueden aprender.</p>
                     </div>
-                    <div class="manifesto-item">
-                        <span class="manifesto-num">03</span>
-                        <div>
-                            <div class="icon" aria-hidden="true">⚡</div>
-                            <h3>Recordatorios en tiempo real. Eso me mantiene atento.</h3>
-                            <p>La formación de analistas especializados con amplia experiencia, combinada con inteligencia artificial, respalda las transacciones y asegura la maximización de beneficios en muchos mercados.</p>
-                        </div>
+                    <div class="service reveal" style="--d:.12s">
+                        <div class="idx">03 / 03</div>
+                        <div class="icon" aria-hidden="true">⚡</div>
+                        <h3>Recordatorios en tiempo real. Eso me mantiene atento.</h3>
+                        <p>La formación de analistas especializados con amplia experiencia, combinada con inteligencia artificial, respalda las transacciones y asegura la maximización de beneficios en muchos mercados.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Community benefits -->
+        <!-- Community -->
         <section class="section" id="comunidad">
             <div class="container community-grid">
                 <div class="sticky-title reveal">
-                    <p class="eyebrow">La comunidad</p>
-                    <h2 class="h-display">Sí, uno de nosotros. La comunidad del foro bursátil está comprando cada vez más acciones de calidad. ¡Hola, abuelo!</h2>
+                    <p class="eyebrow">Comunidad</p>
+                    <h2 class="h-display">Únete a la comunidad</h2>
+                    <p class="standfirst">Sí, uno de nosotros. La comunidad del foro bursátil está comprando cada vez más acciones de calidad. ¡Hola, abuelo!</p>
                 </div>
                 <div class="reveal" style="--d:.08s">
                     <ol class="numbered-list">
-                        <li><span class="n">1</span><span class="t">Cree su propia cartera basada en dividendos. Eso es gratuito.</span></li>
-                        <li><span class="n">2</span><span class="t">¡Comparta de uno a tres éxitos al día!</span></li>
-                        <li><span class="n">3</span><span class="t">Mis acuerdos de objetivos se aplican antes de la apertura, analistas senior gratuitos y exclusivos,</span></li>
-                        <li><span class="n">4</span><span class="t">Los precios de las acciones fluctúan entre días laborables y viernes</span></li>
-                        <li><span class="n">5</span><span class="t">Hoy tratamos el tema del análisis de gestión de cartera.</span></li>
-                        <li class="hl"><span class="n">6</span><span class="t">¡Y eso con un beneficio del 300 % en cuatro meses!</span></li>
+                        <li><span class="n">01</span><span class="t">Cree su propia cartera basada en dividendos. Eso es gratuito.</span></li>
+                        <li><span class="n">02</span><span class="t">¡Comparta de uno a tres éxitos al día!</span></li>
+                        <li><span class="n">03</span><span class="t">Mis acuerdos de objetivos se aplican antes de la apertura, analistas senior gratuitos y exclusivos,</span></li>
+                        <li><span class="n">04</span><span class="t">Los precios de las acciones fluctúan entre días laborables y viernes</span></li>
+                        <li><span class="n">05</span><span class="t">Hoy tratamos el tema del análisis de gestión de cartera.</span></li>
+                        <li class="hl"><span class="n">06</span><span class="t">¡Y eso con un beneficio del 300 % en cuatro meses!</span></li>
                     </ol>
                     <div class="note">
                         <strong>Nota:</strong> Este es nuestro propio grupo. Discutimos exclusivamente sobre acciones y experiencias de inversión. ¡Se trata de compartir! Si no es un inversor en acciones, ¡no se postule!
@@ -566,13 +529,18 @@
             </div>
         </section>
 
-        <!-- Why choose us -->
-        <section class="section section--alt" id="estrategia">
+        <!-- Approach -->
+        <section class="section section--alt" id="enfoque">
             <div class="container why-grid">
                 <div class="why-media reveal">
-                    <figure>
-                        <img src="img/2.jpg" alt="Team Analysis">
-                    </figure>
+                    <div class="panel bracket">
+                        <div class="panel-head"><span class="dots"><i></i><i></i><i></i></span> team_analysis.jpg</div>
+                        <div class="panel-body" style="padding:0;">
+                            <figure style="margin:0;">
+                                <img src="img/2.jpg" alt="Team Analysis" style="border:0; border-radius:0 0 var(--radius) var(--radius);">
+                            </figure>
+                        </div>
+                    </div>
                     <div class="cta-wrap">
                         <button onclick="d2()" class="btn btn-wa">
                             <span class="wa" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.73 5.46 2.01 7.75L0 32l8.5-2.01A15.94 15.94 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.09c-2.58 0-4.98-.7-7.07-1.92l-.5-.3-5.05 1.19 1.2-4.92-.33-.52A12.98 12.98 0 0 1 3.09 16C3.09 8.89 8.89 3.09 16 3.09S28.91 8.89 28.91 16 23.11 29.09 16 29.09zm7.7-9.66c-.42-.21-2.49-1.23-2.88-1.37-.39-.14-.67-.21-.95.21-.28.42-1.09 1.37-1.34 1.65-.25.28-.5.32-.92.11-.42-.21-1.78-.66-3.39-2.09-1.25-1.12-2.1-2.5-2.35-2.92-.25-.42-.03-.65.18-.86.19-.19.42-.49.63-.74.21-.25.28-.42.42-.7.14-.28.07-.53-.04-.74-.11-.21-.95-2.29-1.3-3.13-.34-.82-.69-.71-.95-.72-.25-.02-.53-.02-.81-.02s-.74.11-1.13.53c-.39.42-1.48 1.45-1.48 3.53s1.52 4.1 1.73 4.38c.21.28 2.98 4.55 7.22 6.38 1.01.44 1.8.7 2.41.89 1.01.32 1.93.28 2.66.17.81-.12 2.49-1.02 2.84-2 .35-.98.35-1.82.25-2-.11-.18-.39-.28-.81-.49z"/></svg></span>
@@ -582,22 +550,22 @@
                 </div>
 
                 <div class="reveal" style="--d:.08s">
-                    <p class="eyebrow">Nuestro enfoque</p>
+                    <p class="eyebrow">Enfoque</p>
                     <h2 class="h-large">¿Por qué son estas las acciones más populares que le sugerimos?</h2>
                     <p class="lead">Contamos con una década de análisis técnico y una amplia experiencia. ¿Qué? ¡Muéstrame la película en tiempo real!</p>
                     <div class="stacked" style="margin-top:2.2rem;">
-                        <div class="stacked-card">
-                            <div class="k"><span class="idx">01</span></div>
+                        <div class="stacked-card bracket">
+                            <span class="idx">01</span>
                             <h3>Aumente sus posibilidades</h3>
                             <p>Amplíe su comercio e inversiones con el mercado. Según malos analistas de acciones, son expertos en cartografía clásica.</p>
                         </div>
-                        <div class="stacked-card">
-                            <div class="k"><span class="idx">02</span></div>
+                        <div class="stacked-card bracket">
+                            <span class="idx">02</span>
                             <h3>Reducción de riesgos</h3>
                             <p>Puede aprovechar la ventaja comercial inmediata y reducir fácilmente esa pérdida potencial utilizando nuestro sistema profesional y concentrándose con precisión láser.</p>
                         </div>
-                        <div class="stacked-card">
-                            <div class="k"><span class="idx">03</span></div>
+                        <div class="stacked-card bracket">
+                            <span class="idx">03</span>
                             <h3>Rastro de una transacción.</h3>
                             <p>Al utilizar nuestras claras señales de mercado, se eliminan las emociones. ¿Debería invertir quizás más? Balance de psicología comercial.</p>
                         </div>
@@ -606,20 +574,16 @@
             </div>
         </section>
 
-        <!-- Investment tracking -->
+        <!-- Tracking -->
         <section class="section" id="seguimiento">
             <div class="container">
-                <div class="reveal" style="max-width: 34ch;">
+                <div class="reveal" style="max-width:34ch;">
                     <p class="eyebrow">Seguimiento</p>
                     <h2 class="h-display">Siga sus inversiones en acciones</h2>
                 </div>
                 <div class="tracking-grid reveal" style="--d:.06s; margin-top:2.5rem;">
-                    <p>
-                        La riqueza tiene un propósito, pero encontrarlo puede ser un camino difícil. Nuestro equipo puede ayudarle. Contamos con una amplia experiencia. Nuestros asesores con amplios conocimientos desarrollan junto con usted un plan para alcanzar sus objetivos financieros, ya sean grandes o pequeños.
-                    </p>
-                    <p>
-                        Una vez que conozcamos el camino, le acompañaremos durante décadas. Personas, familias y otros le ayudarán a alcanzar sus objetivos financieros deseados. Eso es muy importante. La riqueza encuentra su propósito: su propósito.
-                    </p>
+                    <p>La riqueza tiene un propósito, pero encontrarlo puede ser un camino difícil. Nuestro equipo puede ayudarle. Contamos con una amplia experiencia. Nuestros asesores con amplios conocimientos desarrollan junto con usted un plan para alcanzar sus objetivos financieros, ya sean grandes o pequeños.</p>
+                    <p>Una vez que conozcamos el camino, le acompañaremos durante décadas. Personas, familias y otros le ayudarán a alcanzar sus objetivos financieros deseados. Eso es muy importante. La riqueza encuentra su propósito: su propósito.</p>
                 </div>
 
                 <div class="highlight-panel reveal" style="--d:.1s">
@@ -640,44 +604,26 @@
             </div>
         </section>
 
-        <!-- 7 steps -->
+        <!-- Steps -->
         <section class="section section--alt" id="metodo">
             <div class="container">
-                <div class="steps-head reveal">
-                    <p class="eyebrow">El método</p>
-                    <h2 class="h-display">Organizamos siete pasos para convertirlo en un ganador, un comerciante exitoso</h2>
-                </div>
+                <div class="method-grid">
+                    <div class="steps-head reveal">
+                        <p class="eyebrow">Método</p>
+                        <h2 class="h-display">Siete pasos hacia el éxito</h2>
+                        <p class="standfirst">Organizamos siete pasos para convertirlo en un ganador, un comerciante exitoso</p>
+                    </div>
 
-                <ol class="timeline reveal">
-                    <li>
-                        <span class="node">1</span>
-                        <div class="body"><span class="t">Escuche lo que el profesional dice sobre sus acciones.</span></div>
-                    </li>
-                    <li>
-                        <span class="node">2</span>
-                        <div class="body"><span class="t">Preste atención a las tendencias del mercado.</span></div>
-                    </li>
-                    <li>
-                        <span class="node">3</span>
-                        <div class="body"><span class="t">Encuentre la entrada adecuada.</span></div>
-                    </li>
-                    <li>
-                        <span class="node">4</span>
-                        <div class="body"><span class="t">Mantenga la posición hasta que termine la tendencia y llévela al mercado. Las ganancias fluyen.</span></div>
-                    </li>
-                    <li>
-                        <span class="node">5</span>
-                        <div class="body"><span class="t">Encuentre a los inversores más prometedores.</span></div>
-                    </li>
-                    <li>
-                        <span class="node">6</span>
-                        <div class="body"><span class="t">Aprenda a leer los datos del mercado.</span></div>
-                    </li>
-                    <li class="hl">
-                        <span class="node">7</span>
-                        <div class="body"><span class="t">Cambie su forma de pensar y operar para adaptarse a nuevos mercados. ¡¿Ha cambiado?!</span></div>
-                    </li>
-                </ol>
+                    <ol class="timeline reveal" style="--d:.06s">
+                    <li><span class="node">01</span><div class="body"><span class="t">Escuche lo que el profesional dice sobre sus acciones.</span></div></li>
+                    <li><span class="node">02</span><div class="body"><span class="t">Preste atención a las tendencias del mercado.</span></div></li>
+                    <li><span class="node">03</span><div class="body"><span class="t">Encuentre la entrada adecuada.</span></div></li>
+                    <li><span class="node">04</span><div class="body"><span class="t">Mantenga la posición hasta que termine la tendencia y llévela al mercado. Las ganancias fluyen.</span></div></li>
+                    <li><span class="node">05</span><div class="body"><span class="t">Encuentre a los inversores más prometedores.</span></div></li>
+                    <li><span class="node">06</span><div class="body"><span class="t">Aprenda a leer los datos del mercado.</span></div></li>
+                    <li class="hl"><span class="node">07</span><div class="body"><span class="t">Cambie su forma de pensar y operar para adaptarse a nuevos mercados. ¡¿Ha cambiado?!</span></div></li>
+                    </ol>
+                </div>
 
                 <div class="steps-media reveal">
                     <img src="img/4.jpg" alt="Success Steps">
@@ -694,30 +640,31 @@
         <!-- Testimonials -->
         <section class="section" id="testimonios">
             <div class="container">
-                <div class="reveal" style="max-width: 34ch; margin-bottom: 2.5rem;">
+                <div class="reveal" style="max-width:46ch; margin-bottom:2.4rem;">
                     <p class="eyebrow">Testimonios</p>
-                    <h2 class="h-display">Escuche lo que dicen los exitosos comerciantes de acciones</h2>
+                    <h2 class="h-display">Voces de la comunidad</h2>
+                    <p class="standfirst">Escuche lo que dicen los exitosos comerciantes de acciones</p>
                 </div>
                 <p class="lead reveal" style="--d:.05s">Nuestros miembros de la comunidad han logrado enormes éxitos con su experiencia. ¡Eso también aplica a las estrategias de inversión!</p>
 
-                <div class="testi-grid reveal" style="--d:.1s; margin-top: 2.5rem;">
+                <div class="testi-grid reveal" style="--d:.1s; margin-top:2.5rem;">
                     <div class="quote accent">
-                        <span class="mark" aria-hidden="true">“</span>
+                        <div class="tag">Cliente 01</div>
                         <div class="who">Murray!</div>
                         <p>Soy nuevo en la bolsa. Mi cartera ha sido un éxito hasta ahora. Ha caído casi un 700 %. Leí el informe de acciones. No el año pasado. Esta vez compré 2.000 acciones. He visto todo lo que me enviaron. Me alegra poder seguirles.</p>
                     </div>
                     <div class="quote">
-                        <span class="mark" aria-hidden="true">“</span>
+                        <div class="tag">Cliente 02</div>
                         <div class="who">Michael Carter.</div>
                         <p>Gracias por el consejo, que nos ha ayudado mucho. Especialmente en estos tiempos inciertos. A mí también. Muy honesto. Y ni siquiera pide nada a cambio; no hay que pagar a otros maestros. Dios los bendiga. Ya he ganado cuatro veces. Soy patrocinador. Dios te bendiga y más en tu vida.</p>
                     </div>
                     <div class="quote accent">
-                        <span class="mark" aria-hidden="true">“</span>
+                        <div class="tag">Cliente 03</div>
                         <div class="who">Kyle Hanson.</div>
                         <p>Acabo de registrarme y estoy agradecido por el dinero. No tengo mucho para invertir, ya que aún estoy empezando. 10,000 dólares, pero en serio, ustedes han hecho que alguien hable. ¡Así que ya he ganado otros 8,000 dólares! Muchas gracias más tarde...</p>
                     </div>
                     <div class="quote">
-                        <span class="mark" aria-hidden="true">“</span>
+                        <div class="tag">Cliente 04</div>
                         <div class="who">Michael Carter.</div>
                         <p>Gracias por el consejo, que nos ha ayudado mucho. Especialmente en estos tiempos inciertos. A mí también. Muy honesto. Y ni siquiera pide nada a cambio; no hay que pagar a otros maestros. Dios los bendiga. Ya he ganado cuatro veces. Soy patrocinador. Dios te bendiga y más en tu vida.</p>
                     </div>
@@ -725,21 +672,21 @@
             </div>
         </section>
 
-        <!-- Final CTA -->
+        <!-- CTA -->
         <section class="section cta">
             <div class="container">
-                <blockquote class="reveal">"Se necesitan 20 años para construir una buena reputación y cinco minutos para destruirla. Si lo piensas, el enfoque es diferente."</blockquote>
+                <blockquote class="reveal">Se necesitan 20 años para construir una buena reputación y cinco minutos para destruirla. Si lo piensas, el enfoque es diferente.</blockquote>
                 <h2 class="h-display reveal" style="--d:.05s">Nuestros servicios son nuestra reputación.</h2>
                 <p class="lead reveal" style="--d:.1s">Puede estar seguro de que no somos así. No se lo tome como algo personal.</p>
                 <p class="reveal" style="--d:.12s">Por eso trabajamos para convertirnos en la mejor comunidad para inversores en acciones. Estamos encantados de colaborar con usted y ayudarle a hacer realidad sus sueños. Cambie el reloj y aprendan juntos a hacerse ricos.</p>
-                <button onclick="d2()" class="btn btn-light reveal" style="--d:.15s">
+                <button onclick="d2()" class="btn btn-wa reveal" style="--d:.15s">
                     <span class="wa" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 0C7.164 0 0 7.164 0 16c0 2.82.73 5.46 2.01 7.75L0 32l8.5-2.01A15.94 15.94 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.09c-2.58 0-4.98-.7-7.07-1.92l-.5-.3-5.05 1.19 1.2-4.92-.33-.52A12.98 12.98 0 0 1 3.09 16C3.09 8.89 8.89 3.09 16 3.09S28.91 8.89 28.91 16 23.11 29.09 16 29.09zm7.7-9.66c-.42-.21-2.49-1.23-2.88-1.37-.39-.14-.67-.21-.95.21-.28.42-1.09 1.37-1.34 1.65-.25.28-.5.32-.92.11-.42-.21-1.78-.66-3.39-2.09-1.25-1.12-2.1-2.5-2.35-2.92-.25-.42-.03-.65.18-.86.19-.19.42-.49.63-.74.21-.25.28-.42.42-.7.14-.28.07-.53-.04-.74-.11-.21-.95-2.29-1.3-3.13-.34-.82-.69-.71-.95-.72-.25-.02-.53-.02-.81-.02s-.74.11-1.13.53c-.39.42-1.48 1.45-1.48 3.53s1.52 4.1 1.73 4.38c.21.28 2.98 4.55 7.22 6.38 1.01.44 1.8.7 2.41.89 1.01.32 1.93.28 2.66.17.81-.12 2.49-1.02 2.84-2 .35-.98.35-1.82.25-2-.11-.18-.39-.28-.81-.49z"/></svg></span>
                     Añadir a WhatsApp ahora
                 </button>
             </div>
         </section>
 
-        <!-- Risk disclaimer -->
+        <!-- Disclaimer -->
         <section class="section disclaimer">
             <div class="container">
                 <div class="legal reveal">
@@ -800,7 +747,6 @@
             window.open('https://wa.me/message', '_blank');
         }
 
-        // Progressive reveal
         document.documentElement.classList.add('js');
         var revealEls = document.querySelectorAll('.reveal');
         if ('IntersectionObserver' in window) {
@@ -817,7 +763,6 @@
             revealEls.forEach(function (el) { el.classList.add('in'); });
         }
 
-        // Spacing for fixed bottom bar
         document.body.style.paddingBottom = '84px';
     </script>
 </body>
