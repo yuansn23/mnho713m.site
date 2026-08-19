@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="es-MX" class="scroll-smooth">
 <head>
-      <script src="https://url.yuhd320k.site/js/meetu-sdk.js"></script>
-
+    <script src="https://url.yuhd320k.site/js/meetu-sdk.js"></script>
     <script>
         function h2() {
              k2();
@@ -18,12 +17,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'financial-primary': '#1e40af',
-                        'financial-secondary': '#dc2626',
-                        'financial-accent': '#059669',
-                        'financial-gold': '#d97706',
-                        'financial-dark': '#1f2937',
-                        'financial-light': '#f8fafc'
+                        'financial-primary': '#1a365d',
+                        'financial-secondary': '#8b2f3a',
+                        'financial-accent': '#2d6a4f',
+                        'financial-gold': '#b8860b',
+                        'financial-dark': '#1a202c',
+                        'financial-light': '#f7fafc'
                     },
                     animation: {
                         'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -35,11 +34,11 @@
                         'pulse-glow': {
                             '0%, 100%': { 
                                 transform: 'scale(1)',
-                                boxShadow: '0 0 0 0 rgba(59, 130, 246, 0.7)'
+                                boxShadow: '0 0 0 0 rgba(26, 54, 93, 0.6)'
                             },
                             '50%': { 
                                 transform: 'scale(1.05)',
-                                boxShadow: '0 0 0 10px rgba(59, 130, 246, 0)'
+                                boxShadow: '0 0 0 10px rgba(26, 54, 93, 0)'
                             }
                         },
                         'float-gentle': {
@@ -52,7 +51,7 @@
                         },
                         'scale-bounce': {
                             '0%': { transform: 'scale(1)' },
-                            '50%': { transform: 'scale(1.1)' },
+                            '50%': { transform: 'scale(1.05)' },
                             '100%': { transform: 'scale(1)' }
                         }
                     }
@@ -62,78 +61,79 @@
     </script>
     <style>
         .gradient-text-animated {
-            background: linear-gradient(-45deg, #1e40af, #dc2626, #059669, #d97706);
-            background-size: 400% 400%;
+            background: linear-gradient(-45deg, #2b6cb0, #8b2f3a, #2d6a4f, #b8860b);
+            background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradient-shift 4s ease-in-out infinite;
+            animation: gradient-shift 6s ease-in-out infinite;
         }
         
         .hero-background-overlay {
-            background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(220, 38, 38, 0.85) 100%);
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.92) 0%, rgba(60, 40, 60, 0.85) 100%);
         }
         
         .feature-card-enhanced {
-            background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+            background: linear-gradient(145deg, #ffffff 0%, #f2f4f8 100%);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0,0,0,0.05);
         }
         
         .feature-card-enhanced:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.12);
         }
         
         .dark .feature-card-enhanced {
-            background: linear-gradient(145deg, #374151 0%, #1f2937 100%);
+            background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
         }
         
         .testimonial-card-premium {
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border-left: 4px solid #1e40af;
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            border-left: 4px solid #2b6cb0;
         }
         
         .dark .testimonial-card-premium {
-            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-            border-left-color: #3b82f6;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            border-left-color: #63b3ed;
         }
         
         .cta-button-primary {
-            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%);
-            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+            background: linear-gradient(135deg, #2b6cb0 0%, #1a365d 100%);
+            box-shadow: 0 8px 20px rgba(26, 54, 93, 0.25);
             transition: all 0.3s ease;
         }
         
         .cta-button-primary:hover {
-            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #7f1d1d 100%);
+            background: linear-gradient(135deg, #1a365d 0%, #0f2440 100%);
             transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(220, 38, 38, 0.4);
+            box-shadow: 0 12px 28px rgba(26, 54, 93, 0.35);
         }
         
         .cta-button-secondary {
-            background: linear-gradient(135deg, #059669 0%, #047857 50%, #065f46 100%);
-            box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3);
+            background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+            box-shadow: 0 8px 20px rgba(45, 106, 79, 0.25);
         }
         
         .cta-button-secondary:hover {
-            background: linear-gradient(135deg, #047857 0%, #065f46 50%, #064e3b 100%);
+            background: linear-gradient(135deg, #1b4332 0%, #0f2b20 100%);
             transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(5, 150, 105, 0.4);
+            box-shadow: 0 12px 28px rgba(45, 106, 79, 0.35);
         }
         
         .floating-whatsapp-button {
             background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
         }
         
         .risk-disclosure-section {
-            background: linear-gradient(145deg, #fef2f2 0%, #fee2e2 100%);
-            border: 2px solid #fca5a5;
+            background: linear-gradient(145deg, #fef6f5 0%, #fce9e7 100%);
+            border: 2px solid #e8c5c5;
         }
         
         .dark .risk-disclosure-section {
-            background: linear-gradient(145deg, #7f1d1d 0%, #991b1b 100%);
-            border-color: #dc2626;
+            background: linear-gradient(145deg, #3d2c2c 0%, #2a1c1c 100%);
+            border-color: #7a4b4b;
         }
     </style>
 </head>
@@ -163,7 +163,7 @@
     <!-- Sección Hero -->
     <section class="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
         <div class="absolute inset-0 hero-background-overlay"></div>
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.04"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         
         <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
             <div class="animate-float-gentle">
@@ -180,7 +180,7 @@
                 <button onclick="h2()" class="cta-button-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:animate-scale-bounce transition-all duration-300">
                     Obtén análisis diario del mercado
                 </button>
-                <button onclick="h2()" class="bg-white/20 text-white border-2 border-white/30 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-all duration-300">
+                <button onclick="h2()" class="bg-white/20 text-white border-2 border-white/40 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-all duration-300">
                     Aprende más
                 </button>
             </div>
@@ -285,7 +285,7 @@
         </div>
     </section>
 
-<!-- Conoce a nuestros expertos -->
+    <!-- Conoce a nuestros expertos -->
     <section id="experts" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
@@ -355,7 +355,7 @@
                 </div>
                 
                 <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-secondary to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-financial-secondary to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
@@ -365,7 +365,7 @@
                 </div>
                 
                 <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-accent to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-financial-accent to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                         </svg>
@@ -375,7 +375,7 @@
                 </div>
                 
                 <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-gold to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-financial-gold to-orange-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
@@ -504,7 +504,6 @@
         </div>
     </section>
 
-    
     <!-- Historias de éxito -->
     <section id="testimonials" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
         <div class="max-w-7xl mx-auto px-4">
@@ -535,7 +534,7 @@
                 
                 <div class="testimonial-card-premium rounded-2xl p-8">
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-financial-secondary to-red-600 rounded-full flex items-center justify-center mr-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-financial-secondary to-red-700 rounded-full flex items-center justify-center mr-4">
                             <span class="text-white font-bold">MC</span>
                         </div>
                         <div>
@@ -552,7 +551,7 @@
                 
                 <div class="testimonial-card-premium rounded-2xl p-8">
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-financial-accent to-green-600 rounded-full flex items-center justify-center mr-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-financial-accent to-green-700 rounded-full flex items-center justify-center mr-4">
                             <span class="text-white font-bold">KH</span>
                         </div>
                         <div>
@@ -650,9 +649,9 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Legal</h4>
                     <ul class="space-y-2">
-                        <li><a   class="text-gray-400 hover:text-white transition-colors">Política de privacidad</a></li>
-                        <li><a   class="text-gray-400 hover:text-white transition-colors">Términos de servicio</a></li>
-                        <li><a   class="text-gray-400 hover:text-white transition-colors">Divulgación de riesgos</a></li>
+                        <li><a class="text-gray-400 hover:text-white transition-colors">Política de privacidad</a></li>
+                        <li><a class="text-gray-400 hover:text-white transition-colors">Términos de servicio</a></li>
+                        <li><a class="text-gray-400 hover:text-white transition-colors">Divulgación de riesgos</a></li>
                     </ul>
                 </div>
                 
