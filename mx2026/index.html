@@ -27,7 +27,7 @@
                     animation: {
                         'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'float-gentle': 'float-gentle 3s ease-in-out infinite',
-                        'gradient-shift': 'gradient-shift 4s ease-in-out infinite',
+                        'gradient-shift': 'gradient-shift 6s ease-in-out infinite',
                         'scale-bounce': 'scale-bounce 0.6s ease-in-out'
                     },
                     keyframes: {
@@ -43,7 +43,7 @@
                         },
                         'float-gentle': {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' }
+                            '50%': { transform: 'translateY(-8px)' }
                         },
                         'gradient-shift': {
                             '0%, 100%': { backgroundPosition: '0% 50%' },
@@ -68,72 +68,79 @@
             background-clip: text;
             animation: gradient-shift 6s ease-in-out infinite;
         }
-        
         .hero-background-overlay {
             background: linear-gradient(135deg, rgba(26, 54, 93, 0.92) 0%, rgba(60, 40, 60, 0.85) 100%);
         }
-        
         .feature-card-enhanced {
             background: linear-gradient(145deg, #ffffff 0%, #f2f4f8 100%);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(0,0,0,0.05);
         }
-        
         .feature-card-enhanced:hover {
             transform: translateY(-6px);
             box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.12);
         }
-        
         .dark .feature-card-enhanced {
             background: linear-gradient(145deg, #2d3748 0%, #1a202c 100%);
         }
-        
         .testimonial-card-premium {
             background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
             border-left: 4px solid #2b6cb0;
         }
-        
         .dark .testimonial-card-premium {
             background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
             border-left-color: #63b3ed;
         }
-        
         .cta-button-primary {
             background: linear-gradient(135deg, #2b6cb0 0%, #1a365d 100%);
             box-shadow: 0 8px 20px rgba(26, 54, 93, 0.25);
             transition: all 0.3s ease;
         }
-        
         .cta-button-primary:hover {
             background: linear-gradient(135deg, #1a365d 0%, #0f2440 100%);
             transform: translateY(-2px);
             box-shadow: 0 12px 28px rgba(26, 54, 93, 0.35);
         }
-        
         .cta-button-secondary {
             background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
             box-shadow: 0 8px 20px rgba(45, 106, 79, 0.25);
         }
-        
         .cta-button-secondary:hover {
             background: linear-gradient(135deg, #1b4332 0%, #0f2b20 100%);
             transform: translateY(-2px);
             box-shadow: 0 12px 28px rgba(45, 106, 79, 0.35);
         }
-        
         .floating-whatsapp-button {
             background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
             box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
         }
-        
         .risk-disclosure-section {
             background: linear-gradient(145deg, #fef6f5 0%, #fce9e7 100%);
             border: 2px solid #e8c5c5;
         }
-        
         .dark .risk-disclosure-section {
             background: linear-gradient(145deg, #3d2c2c 0%, #2a1c1c 100%);
             border-color: #7a4b4b;
+        }
+        /* Fix for circular avatar on all screens */
+        .avatar-circle {
+            flex-shrink: 0;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 2px solid;
+        }
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @media (max-width: 640px) {
+            .avatar-circle {
+                width: 4rem;
+                height: 4rem;
+            }
         }
     </style>
 </head>
@@ -143,18 +150,18 @@
     <nav class="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg fixed w-full z-40 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-financial-primary to-financial-secondary rounded-lg flex items-center justify-center">
-                        <span class="text-white font-bold text-lg">FI</span>
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-financial-primary to-financial-secondary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm sm:text-lg">FI</span>
                     </div>
-                    <span class="text-xl font-bold gradient-text-animated">Fidelity Investments</span>
+                    <span class="text-base sm:text-xl font-bold gradient-text-animated">Fidelity Investments</span>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors">Acerca de</a>
-                    <a href="#features" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors">Características</a>
-                    <a href="#education" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors">Educación</a>
-                    <a href="#experts" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors">Expertos</a>
-                    <a href="#testimonials" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors">Historias de éxito</a>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors text-sm lg:text-base">Acerca de</a>
+                    <a href="#features" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors text-sm lg:text-base">Características</a>
+                    <a href="#education" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors text-sm lg:text-base">Educación</a>
+                    <a href="#experts" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors text-sm lg:text-base">Expertos</a>
+                    <a href="#testimonials" class="text-gray-700 dark:text-gray-300 hover:text-financial-primary transition-colors text-sm lg:text-base">Historias</a>
                 </div>
             </div>
         </div>
@@ -167,116 +174,116 @@
         
         <div class="relative z-10 max-w-6xl mx-auto px-4 text-center">
             <div class="animate-float-gentle">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
                     Mejora tus <span class="text-financial-gold">habilidades de inversión</span><br>
                     con Fidelity
                 </h1>
-                <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-2">
                     Navega la volatilidad del mercado con confianza. Únete a una comunidad global de estudiantes y accede a recursos educativos gratuitos, perspectivas de mercado y orientación experta de uno de los gestores de activos más confiables del mundo.
                 </p>
             </div>
             
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-                <button onclick="h2()" class="cta-button-primary text-white px-8 py-4 rounded-full text-lg font-semibold hover:animate-scale-bounce transition-all duration-300">
-                    Obtén análisis diario del mercado
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4 md:space-x-6 mb-8 sm:mb-12">
+                <button onclick="h2()" class="cta-button-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:animate-scale-bounce transition-all duration-300 w-full sm:w-auto">
+                    Obtén análisis diario
                 </button>
-                <button onclick="h2()" class="bg-white/20 text-white border-2 border-white/40 px-8 py-4 rounded-full text-lg font-semibold hover:bg-white/30 transition-all duration-300">
+                <button onclick="h2()" class="bg-white/20 text-white border-2 border-white/40 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white/30 transition-all duration-300 w-full sm:w-auto">
                     Aprende más
                 </button>
             </div>
             
-            <div class="grid grid-cols-3 gap-4 sm:gap-8 mt-16">
-                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/30 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold text-financial-primary mb-1 sm:mb-2">$15.1B</div>
-                    <div class="text-xs sm:text-base text-gray-700 font-medium">Activos bajo administración</div>
+            <div class="grid grid-cols-3 gap-2 sm:gap-4 md:gap-8 mt-8 sm:mt-16">
+                <div class="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/30 shadow-lg">
+                    <div class="text-xl sm:text-2xl md:text-3xl font-bold text-financial-primary mb-0 sm:mb-1">$15.1B</div>
+                    <div class="text-[10px] sm:text-xs md:text-base text-gray-700 font-medium">Activos bajo admin.</div>
                 </div>
-                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/30 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold text-financial-secondary mb-1 sm:mb-2">80+ Años</div>
-                    <div class="text-xs sm:text-base text-gray-700 font-medium">Experiencia en la industria</div>
+                <div class="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/30 shadow-lg">
+                    <div class="text-xl sm:text-2xl md:text-3xl font-bold text-financial-secondary mb-0 sm:mb-1">80+ Años</div>
+                    <div class="text-[10px] sm:text-xs md:text-base text-gray-700 font-medium">Experiencia</div>
                 </div>
-                <div class="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/30 shadow-lg">
-                    <div class="text-2xl sm:text-3xl font-bold text-financial-accent mb-1 sm:mb-2">40M+</div>
-                    <div class="text-xs sm:text-base text-gray-700 font-medium">Inversionistas atendidos</div>
+                <div class="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-6 border border-white/30 shadow-lg">
+                    <div class="text-xl sm:text-2xl md:text-3xl font-bold text-financial-accent mb-0 sm:mb-1">40M+</div>
+                    <div class="text-[10px] sm:text-xs md:text-base text-gray-700 font-medium">Inversionistas</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Acerca de la empresa -->
-    <section id="about" class="py-20 bg-white dark:bg-gray-900">
+    <section id="about" class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text-animated mb-6">Acerca de Fidelity Investments</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text-animated mb-4 sm:mb-6">Acerca de Fidelity Investments</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-2">
                     Líder mundial en gestión de activos y educación financiera, con sede en Boston, MA.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
                 <div>
-                    <h3 class="text-3xl font-bold mb-6">Quiénes somos</h3>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Quiénes somos</h3>
+                    <p class="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">
                         Fidelity Investments (anteriormente Fidelity Management &amp; Research, símbolo bursátil FMR) es una corporación de servicios financieros estadounidense fundada en 1946. Hoy somos uno de los gestores de activos más grandes del mundo, con <strong>$5.9 billones</strong> en activos bajo gestión discrecional y <strong>$15.1 billones</strong> en activos totales bajo administración a diciembre de 2024.
                     </p>
-                    <p class="text-lg text-gray-600 dark:text-gray-400">
-                        Con sede en <strong>245 Summer Street, Boston, MA</strong>, Fidelity atiende a inversionistas individuales, instituciones y asesores financieros a través de una amplia gama de productos de inversión, servicios de jubilación y recursos educativos.
+                    <p class="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400">
+                        Con sede en <strong>245 Summer Street, Boston, MA</strong>, Fidelity atiende a inversionistas individuales, instituciones y asesores financieros.
                     </p>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
-                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-                            <div class="text-2xl font-bold text-financial-primary">1946</div>
-                            <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Fundada</div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-8">
+                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3 sm:p-4">
+                            <div class="text-xl sm:text-2xl font-bold text-financial-primary">1946</div>
+                            <div class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 mt-1">Fundada</div>
                         </div>
-                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-                            <div class="text-2xl font-bold text-financial-secondary">40M+</div>
-                            <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Inversionistas</div>
+                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3 sm:p-4">
+                            <div class="text-xl sm:text-2xl font-bold text-financial-secondary">40M+</div>
+                            <div class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 mt-1">Inversionistas</div>
                         </div>
-                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-                            <div class="text-2xl font-bold text-financial-accent">25+</div>
-                            <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Países atendidos</div>
+                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3 sm:p-4">
+                            <div class="text-xl sm:text-2xl font-bold text-financial-accent">25+</div>
+                            <div class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 mt-1">Países</div>
                         </div>
-                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-4">
-                            <div class="text-2xl font-bold text-financial-gold">70+</div>
-                            <div class="text-xs text-gray-600 dark:text-gray-400 mt-1">Años de innovación</div>
+                        <div class="text-center bg-gray-50 dark:bg-gray-800 rounded-xl p-3 sm:p-4">
+                            <div class="text-xl sm:text-2xl font-bold text-financial-gold">70+</div>
+                            <div class="text-[10px] sm:text-xs text-gray-600 dark:text-gray-400 mt-1">Años innov.</div>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-3xl font-bold mb-6">Nuestra trayectoria</h3>
-                    <div class="space-y-5">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Nuestra trayectoria</h3>
+                    <div class="space-y-4 sm:space-y-5">
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-financial-primary rounded-full flex items-center justify-center text-white font-bold mr-4 shrink-0">'46</div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-financial-primary rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 shrink-0 text-sm sm:text-base">'46</div>
                             <div>
-                                <h4 class="font-bold">Fundada como Fidelity Management &amp; Research</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Establecida en Boston, pionera en inversiones en fondos mutuos para estadounidenses de a pie.</p>
+                                <h4 class="font-bold text-sm sm:text-base">Fundada como Fidelity Management &amp; Research</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Establecida en Boston, pionera en fondos mutuos.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-financial-secondary rounded-full flex items-center justify-center text-white font-bold mr-4 shrink-0">'69</div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-financial-secondary rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 shrink-0 text-sm sm:text-base">'69</div>
                             <div>
-                                <h4 class="font-bold">Expansión global – Fidelity International (FIL)</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Lanzada para atender mercados fuera de EE. UU., construyendo presencia mundial.</p>
+                                <h4 class="font-bold text-sm sm:text-base">Expansión global – Fidelity International (FIL)</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Lanzada para atender mercados fuera de EE. UU.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-financial-accent rounded-full flex items-center justify-center text-white font-bold mr-4 shrink-0">'82</div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-financial-accent rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 shrink-0 text-sm sm:text-base">'82</div>
                             <div>
-                                <h4 class="font-bold">401(k) y trading computerizado</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Introducción de productos 401(k) y, en 1984, servicios de trading computerizado.</p>
+                                <h4 class="font-bold text-sm sm:text-base">401(k) y trading computerizado</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Introducción de productos 401(k) y trading en 1984.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-financial-gold rounded-full flex items-center justify-center text-white font-bold mr-4 shrink-0">'18</div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-financial-gold rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 shrink-0 text-sm sm:text-base">'18</div>
                             <div>
-                                <h4 class="font-bold">Fidelity Digital Assets y fondos sin comisiones</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Lanzamiento de custodia institucional de criptoactivos y fondos mutuos sin gastos.</p>
+                                <h4 class="font-bold text-sm sm:text-base">Fidelity Digital Assets y fondos sin comisiones</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Custodia de criptoactivos y fondos sin gastos.</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-financial-dark rounded-full flex items-center justify-center text-white font-bold mr-4 shrink-0">'26</div>
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-financial-dark rounded-full flex items-center justify-center text-white font-bold mr-3 sm:mr-4 shrink-0 text-sm sm:text-base">'26</div>
                             <div>
-                                <h4 class="font-bold">Reconocida como una de las empresas más confiables</h4>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Nombrada por Newsweek como una de las empresas más confiables de EE. UU. (abril de 2026).</p>
+                                <h4 class="font-bold text-sm sm:text-base">Reconocida como una de las más confiables</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Newsweek (abril 2026).</p>
                             </div>
                         </div>
                     </div>
@@ -286,108 +293,108 @@
     </section>
 
     <!-- Conoce a nuestros expertos -->
-    <section id="experts" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <section id="experts" class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text-animated mb-6">Conoce a nuestros expertos</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                    Profesionales con amplia experiencia que guían nuestro plan de estudios y la investigación diaria del mercado.
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text-animated mb-4 sm:mb-6">Conoce a nuestros expertos</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-2">
+                    Profesionales con amplia experiencia que guían nuestro plan de estudios y la investigación diaria.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="feature-card-enhanced rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-20 h-20 rounded-full overflow-hidden mr-5 border-2 border-financial-primary">
-                            <img src="img/a1.jpg" alt="Niamh" class="w-full h-full object-cover">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <div class="feature-card-enhanced rounded-2xl p-6 sm:p-8">
+                    <div class="flex items-center mb-4 sm:mb-6">
+                        <div class="avatar-circle border-financial-primary mr-4 sm:mr-5">
+                            <img src="img/a1.jpg" alt="Niamh">
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold">Niamh</h3>
-                            <p class="text-financial-primary font-semibold">Directora Global de Inversiones en Renta Variable</p>
+                            <h3 class="text-xl sm:text-2xl font-bold">Niamh</h3>
+                            <p class="text-sm sm:text-base text-financial-primary font-semibold">Directora Global de Inversiones en Renta Variable</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
                         Niamh actualmente se desempeña como Directora Global de Inversiones en Renta Variable en Fidelity International. Anteriormente, fue Directora de Investigación de Renta Variable y Co-Directora de Inversiones Sostenibles en Fidelity (FMR). Antes de unirse a Fidelity en 2011, trabajó como analista de renta variable y gestora de carteras sectoriales en Pioneer Investment, Merrion Stockbrokers y Tilman Asset Management.
                     </p>
                 </div>
 
-                <div class="feature-card-enhanced rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-20 h-20 rounded-full overflow-hidden mr-5 border-2 border-financial-secondary">
-                            <img src="img/a2.jpg" alt="Andrew" class="w-full h-full object-cover">
+                <div class="feature-card-enhanced rounded-2xl p-6 sm:p-8">
+                    <div class="flex items-center mb-4 sm:mb-6">
+                        <div class="avatar-circle border-financial-secondary mr-4 sm:mr-5">
+                            <img src="img/a2.jpg" alt="Andrew">
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold">Andrew</h3>
-                            <p class="text-financial-secondary font-semibold">Director de Gestión de Activos</p>
+                            <h3 class="text-xl sm:text-2xl font-bold">Andrew</h3>
+                            <p class="text-sm sm:text-base text-financial-secondary font-semibold">Director de Gestión de Activos</p>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
-                        Andrew se unió a Fidelity International en 1996. Como Director de Gestión de Activos, supervisa el negocio de inversiones que abarca renta variable, renta fija, multi-activos, bienes raíces e inversiones sistemáticas. Anteriormente, se desempeñó como Presidente de Fidelity Canadá, donde lideró tres líneas de negocio locales — Fidelity Investments Canada, Fidelity Clearing Canada y el equipo de inversión canadiense — enfocadas en servir a nuevos mercados estratégicos.
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                        Andrew se unió a Fidelity International en 1996. Como Director de Gestión de Activos, supervisa el negocio de inversiones que abarca renta variable, renta fija, multi-activos, bienes raíces e inversiones sistemáticas. Anteriormente, fue Presidente de Fidelity Canadá, liderando tres líneas de negocio locales enfocadas en nuevos mercados estratégicos.
                     </p>
                 </div>
             </div>
 
-            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
+            <p class="text-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-6 sm:mt-8">
                 Fidelity Investments es una empresa de servicios financieros independiente. Todo el contenido educativo es solo para fines informativos.
             </p>
         </div>
     </section>
 
     <!-- Por qué elegirnos -->
-    <section id="features" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <section id="features" class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text-animated mb-6">¿Por qué elegir Fidelity?</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                    Benefíciate de décadas de experiencia, herramientas de vanguardia y un compromiso con la educación del inversor.
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text-animated mb-4 sm:mb-6">¿Por qué elegir Fidelity?</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-2">
+                    Benefíciate de décadas de experiencia, herramientas de vanguardia y compromiso con la educación.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
-                <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+                <div class="feature-card-enhanced rounded-2xl p-5 sm:p-6 md:p-8 text-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-financial-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Experiencia global</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Accede a investigaciones y perspectivas de uno de los gestores de activos más grandes del mundo, con presencia en más de 25 países.</p>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-4">Experiencia global</h3>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Accede a investigaciones de uno de los gestores más grandes, con presencia en 25+ países.</p>
                 </div>
                 
-                <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-secondary to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card-enhanced rounded-2xl p-5 sm:p-6 md:p-8 text-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-financial-secondary to-red-700 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Análisis en tiempo real</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Mantente al día con tendencias diarias del mercado, investigaciones bursátiles y perspectivas prácticas de nuestro equipo de analistas.</p>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-4">Análisis en tiempo real</h3>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Mantente al día con tendencias diarias y perspectivas de nuestro equipo.</p>
                 </div>
                 
-                <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-accent to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card-enhanced rounded-2xl p-5 sm:p-6 md:p-8 text-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-financial-accent to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Gestión de riesgos</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Aprende estrategias profesionales de mitigación de riesgos y técnicas de construcción de cartera utilizadas por inversores institucionales.</p>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-4">Gestión de riesgos</h3>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Estrategias profesionales de mitigación y construcción de cartera.</p>
                 </div>
                 
-                <div class="feature-card-enhanced rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-gold to-orange-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="feature-card-enhanced rounded-2xl p-5 sm:p-6 md:p-8 text-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-financial-gold to-orange-700 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Comunidad y soporte</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Únete a una comunidad vibrante de estudiantes, con acceso 24/7 a materiales educativos y sesiones de preguntas y respuestas con expertos.</p>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-4">Comunidad y soporte</h3>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Acceso 24/7 a materiales y sesiones con expertos.</p>
                 </div>
             </div>
             
-            <div class="text-center mt-12">
-                <img src="img/1.jpg" alt="Equipo de inversión de Fidelity" class="mx-auto rounded-2xl shadow-2xl max-w-2xl w-full mb-8">
-                <button onclick="h2()" class="cta-button-secondary text-white px-10 py-4 rounded-full text-lg font-semibold">
+            <div class="text-center mt-8 sm:mt-12">
+                <img src="img/1.jpg" alt="Equipo de inversión de Fidelity" class="mx-auto rounded-2xl shadow-2xl max-w-2xl w-full mb-6 sm:mb-8">
+                <button onclick="h2()" class="cta-button-secondary text-white px-8 sm:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold">
                     Conecta con expertos
                 </button>
             </div>
@@ -395,105 +402,105 @@
     </section>
 
     <!-- Servicios educativos -->
-    <section id="education" class="py-20 bg-white dark:bg-gray-900">
+    <section id="education" class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text-animated mb-6">Servicios educativos principales</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                    Programas integrales diseñados para desarrollar tu conocimiento y confianza en inversiones.
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text-animated mb-4 sm:mb-6">Servicios educativos principales</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto px-2">
+                    Programas integrales para desarrollar tu conocimiento y confianza en inversiones.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 sm:mb-16">
                 <div>
-                    <h3 class="text-3xl font-bold mb-6">Análisis de tendencias e interpretación de gráficos</h3>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                        Aprende a leer gráficos de mercado, identificar patrones y aplicar técnicas de análisis técnico utilizadas por los equipos de investigación de Fidelity.
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Análisis de tendencias e interpretación de gráficos</h3>
+                    <p class="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+                        Aprende a leer gráficos, identificar patrones y aplicar técnicas de análisis técnico usadas por los equipos de Fidelity.
                     </p>
-                    <ul class="space-y-4">
+                    <ul class="space-y-3 sm:space-y-4">
                         <li class="flex items-center">
-                            <div class="w-6 h-6 bg-financial-accent rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 bg-financial-accent rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span>Fundamentos del análisis técnico</span>
+                            <span class="text-sm sm:text-base">Fundamentos del análisis técnico</span>
                         </li>
                         <li class="flex items-center">
-                            <div class="w-6 h-6 bg-financial-accent rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 bg-financial-accent rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span>Estrategias de reconocimiento de patrones</span>
+                            <span class="text-sm sm:text-base">Estrategias de reconocimiento de patrones</span>
                         </li>
                         <li class="flex items-center">
-                            <div class="w-6 h-6 bg-financial-accent rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 bg-financial-accent rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span>Técnicas de sincronización del mercado</span>
+                            <span class="text-sm sm:text-base">Técnicas de sincronización del mercado</span>
                         </li>
                     </ul>
                 </div>
                 <div class="text-center">
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900 dark:to-indigo-900 rounded-2xl p-8">
-                        <svg class="w-32 h-32 mx-auto text-financial-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900 dark:to-indigo-900 rounded-2xl p-6 sm:p-8">
+                        <svg class="w-24 h-24 sm:w-32 sm:h-32 mx-auto text-financial-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                         </svg>
                     </div>
                 </div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center mb-12 sm:mb-16">
                 <div class="order-2 lg:order-1 text-center">
-                    <div class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-900 rounded-2xl p-8">
-                        <svg class="w-32 h-32 mx-auto text-financial-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900 dark:to-emerald-900 rounded-2xl p-6 sm:p-8">
+                        <svg class="w-24 h-24 sm:w-32 sm:h-32 mx-auto text-financial-accent mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                         </svg>
                     </div>
                 </div>
                 <div class="order-1 lg:order-2">
-                    <h3 class="text-3xl font-bold mb-6">Entrenamiento en resiliencia psicológica</h3>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Entrenamiento en resiliencia psicológica</h3>
+                    <p class="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
                         Supera el sesgo emocional y mejora la toma de decisiones bajo presión con técnicas de coaching basadas en finanzas conductuales.
                     </p>
-                    <ul class="space-y-4">
+                    <ul class="space-y-3 sm:space-y-4">
                         <li class="flex items-center">
-                            <div class="w-6 h-6 bg-financial-secondary rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 bg-financial-secondary rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span>Estrategias de control emocional</span>
+                            <span class="text-sm sm:text-base">Estrategias de control emocional</span>
                         </li>
                         <li class="flex items-center">
-                            <div class="w-6 h-6 bg-financial-secondary rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 bg-financial-secondary rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span>Técnicas de manejo del estrés</span>
+                            <span class="text-sm sm:text-base">Técnicas de manejo del estrés</span>
                         </li>
                         <li class="flex items-center">
-                            <div class="w-6 h-6 bg-financial-secondary rounded-full flex items-center justify-center mr-3">
-                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-5 h-5 sm:w-6 sm:h-6 bg-financial-secondary rounded-full flex items-center justify-center mr-2 sm:mr-3 flex-shrink-0">
+                                <svg class="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
                             </div>
-                            <span>Marcos de toma de decisiones</span>
+                            <span class="text-sm sm:text-base">Marcos de toma de decisiones</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="text-center bg-gradient-to-r from-financial-primary/10 to-financial-secondary/10 rounded-2xl p-8 mb-12">
-                <h3 class="text-2xl font-bold mb-4">Herramientas gratuitas para crear carteras</h3>
-                <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
-                    Planifica tu cartera de inversiones y trabaja hacia metas financieras a largo plazo con nuestras herramientas interactivas y orientación.
+            <div class="text-center bg-gradient-to-r from-financial-primary/10 to-financial-secondary/10 rounded-2xl p-6 sm:p-8 mb-8 sm:mb-12">
+                <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Herramientas gratuitas para crear carteras</h3>
+                <p class="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-4 sm:mb-6">
+                    Planifica tu cartera y trabaja hacia metas financieras a largo plazo con nuestras herramientas interactivas.
                 </p>
-                <button onclick="h2()" class="cta-button-primary text-white px-8 py-3 rounded-full text-lg font-semibold">
+                <button onclick="h2()" class="cta-button-primary text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold">
                     Únete ahora a la comunidad
                 </button>
             </div>
@@ -505,63 +512,57 @@
     </section>
 
     <!-- Historias de éxito -->
-    <section id="testimonials" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+    <section id="testimonials" class="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text-animated mb-6">Historias de éxito de nuestra comunidad</h2>
-                <p class="text-xl text-gray-600 dark:text-gray-400">
-                    Los miembros de nuestra comunidad se benefician de la orientación profesional y el soporte en tiempo real.
+            <div class="text-center mb-10 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text-animated mb-4 sm:mb-6">Historias de éxito de nuestra comunidad</h2>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400">
+                    Miembros que se benefician de la orientación profesional y el soporte en tiempo real.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="testimonial-card-premium rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-financial-primary to-blue-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">ML</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="testimonial-card-premium rounded-2xl p-6 sm:p-8">
+                    <div class="flex items-center mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-financial-primary to-blue-600 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                            <span class="text-white font-bold text-sm sm:text-base">ML</span>
                         </div>
                         <div>
-                            <h4 class="font-bold">María L.</h4>
-                            <div class="flex text-financial-gold">
-                                ★★★★★
-                            </div>
+                            <h4 class="font-bold text-sm sm:text-base">María L.</h4>
+                            <div class="flex text-financial-gold text-sm sm:text-base">★★★★★</div>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 italic">
-                        "Era completamente nueva en el mundo de las inversiones. Con los recursos educativos de Fidelity y el apoyo de la comunidad, aprendí a analizar los mercados y he visto un progreso constante."
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 italic">
+                        "Era completamente nueva en inversiones. Con los recursos de Fidelity y el apoyo de la comunidad, aprendí a analizar los mercados y he visto progreso constante."
                     </p>
                 </div>
                 
-                <div class="testimonial-card-premium rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-financial-secondary to-red-700 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">MC</span>
+                <div class="testimonial-card-premium rounded-2xl p-6 sm:p-8">
+                    <div class="flex items-center mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-financial-secondary to-red-700 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                            <span class="text-white font-bold text-sm sm:text-base">MC</span>
                         </div>
                         <div>
-                            <h4 class="font-bold">Miguel C.</h4>
-                            <div class="flex text-financial-gold">
-                                ★★★★★
-                            </div>
+                            <h4 class="font-bold text-sm sm:text-base">Miguel C.</h4>
+                            <div class="flex text-financial-gold text-sm sm:text-base">★★★★★</div>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 italic">
-                        "Las ideas de los expertos y el análisis diario me dieron la confianza para navegar en mercados volátiles. Este apoyo es realmente invaluable."
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 italic">
+                        "Las ideas de los expertos y el análisis diario me dieron la confianza para navegar en mercados volátiles. Este apoyo es invaluable."
                     </p>
                 </div>
                 
-                <div class="testimonial-card-premium rounded-2xl p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-financial-accent to-green-700 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold">KH</span>
+                <div class="testimonial-card-premium rounded-2xl p-6 sm:p-8">
+                    <div class="flex items-center mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-financial-accent to-green-700 rounded-full flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                            <span class="text-white font-bold text-sm sm:text-base">KH</span>
                         </div>
                         <div>
-                            <h4 class="font-bold">Karla H.</h4>
-                            <div class="flex text-financial-gold">
-                                ★★★★★
-                            </div>
+                            <h4 class="font-bold text-sm sm:text-base">Karla H.</h4>
+                            <div class="flex text-financial-gold text-sm sm:text-base">★★★★★</div>
                         </div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 italic">
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 italic">
                         "A través de los programas educativos de Fidelity, he adquirido una base sólida en técnicas de inversión y análisis de mercado."
                     </p>
                 </div>
@@ -570,31 +571,31 @@
     </section>
 
     <!-- Nuestro compromiso -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <section class="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
         <div class="max-w-5xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold gradient-text-animated mb-8">Nuestro compromiso contigo</h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text-animated mb-6 sm:mb-8">Nuestro compromiso contigo</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-10 sm:mb-16">
                 <div class="text-left">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-primary to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-financial-primary to-blue-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Enfoque educativo</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        Proporcionamos recursos de aprendizaje confiables y herramientas prácticas diseñadas para empoderar a los inversores en todos los niveles.
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Enfoque educativo</h3>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                        Recursos de aprendizaje confiables y herramientas prácticas para empoderar a inversores de todos los niveles.
                     </p>
                 </div>
                 
                 <div class="text-left">
-                    <div class="w-16 h-16 bg-gradient-to-br from-financial-accent to-green-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-financial-accent to-green-600 rounded-2xl flex items-center justify-center mb-4 sm:mb-6">
+                        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Transparencia y profesionalismo</h3>
-                    <p class="text-gray-600 dark:text-gray-400">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Transparencia y profesionalismo</h3>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">
                         Toda la información se basa en análisis de datos y tendencias del mercado, garantizando autenticidad y fiabilidad.
                     </p>
                 </div>
@@ -603,52 +604,47 @@
     </section>
 
     <!-- Divulgación de riesgos -->
-    <section class="py-16 bg-gray-100 dark:bg-gray-800">
+    <section class="py-10 sm:py-16 bg-gray-100 dark:bg-gray-800">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="risk-disclosure-section rounded-2xl p-8">
-                <div class="flex items-center mb-6">
-                    <svg class="w-8 h-8 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="risk-disclosure-section rounded-2xl p-5 sm:p-8">
+                <div class="flex items-center mb-4 sm:mb-6">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-red-600 mr-2 sm:mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                     </svg>
-                    <h3 class="text-2xl font-bold text-red-800 dark:text-red-400">⚠️ Aviso importante sobre riesgos</h3>
+                    <h3 class="text-lg sm:text-2xl font-bold text-red-800 dark:text-red-400">⚠️ Aviso importante sobre riesgos</h3>
                 </div>
                 
-                <div class="space-y-4 text-sm text-red-700 dark:text-red-300">
+                <div class="space-y-3 sm:space-y-4 text-xs sm:text-sm text-red-700 dark:text-red-300">
                     <p><strong>Aviso de riesgo de inversión:</strong> Todas las inversiones conllevan riesgos inherentes. El rendimiento pasado no garantiza resultados futuros. Los precios de las acciones pueden fluctuar significativamente y usted podría perder parte o la totalidad de su inversión.</p>
-                    
-                    <p><strong>Propósito educativo:</strong> El contenido proporcionado en esta plataforma es solo para fines educativos y no debe considerarse como asesoramiento de inversión personalizado. Siempre realice su propia investigación y considere su situación financiera antes de tomar decisiones de inversión.</p>
-                    
-                    <p><strong>Sin garantías de inversión:</strong> No garantizamos resultados o rendimientos específicos de inversión. Las condiciones del mercado pueden cambiar rápida e impredeciblemente.</p>
-                    
-                    <p><strong>Consulta profesional:</strong> Considere consultar con asesores financieros calificados antes de tomar decisiones de inversión significativas. Nuestro contenido educativo no reemplaza el asesoramiento financiero profesional.</p>
-                    
-                    <p><strong>Declaración de cumplimiento:</strong> Esta plataforma cumple con las políticas de publicidad financiera de Google. Nos enfocamos en la educación y no proporcionamos servicios de inversión directa ni recomendaciones sobre valores específicos.</p>
-                    
-                    <p><strong>Requisito de edad:</strong> Los servicios de educación en inversiones están destinados a adultos mayores de 25 años. Los usuarios deben cumplir con las regulaciones y leyes financieras locales.</p>
+                    <p><strong>Propósito educativo:</strong> El contenido es solo para fines educativos y no debe considerarse como asesoramiento de inversión personalizado. Siempre realice su propia investigación.</p>
+                    <p><strong>Sin garantías de inversión:</strong> No garantizamos resultados o rendimientos específicos. Las condiciones del mercado pueden cambiar rápidamente.</p>
+                    <p><strong>Consulta profesional:</strong> Considere consultar con asesores financieros calificados antes de tomar decisiones significativas.</p>
+                    <p><strong>Declaración de cumplimiento:</strong> Cumplimos con las políticas de publicidad financiera de Google. No proporcionamos servicios de inversión directa.</p>
+                    <p><strong>Requisito de edad:</strong> Servicios para adultos mayores de 25 años. Cumpla con las regulaciones locales.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pie de página -->
-    <footer class="bg-gray-900 dark:bg-black text-white py-12">
+    <footer class="bg-gray-900 dark:bg-black text-white py-10 sm:py-12">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
                 <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-br from-financial-primary to-financial-secondary rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">FI</span>
+                    <div class="flex items-center space-x-3 mb-4 sm:mb-6">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-financial-primary to-financial-secondary rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm sm:text-lg">FI</span>
                         </div>
-                        <span class="text-2xl font-bold">Fidelity Investments</span>
+                        <span class="text-xl sm:text-2xl font-bold">Fidelity Investments</span>
                     </div>
-                    <p class="text-gray-400 mb-6 max-w-md">
-                        Líder mundial en gestión de activos y educación financiera, con sede en <strong>245 Summer Street, Boston, MA</strong>. Atendemos a inversionistas individuales, instituciones y asesores financieros en todo el mundo.
+                    <p class="text-gray-400 text-sm sm:text-base max-w-md">
+                        Líder mundial en gestión de activos y educación financiera, con sede en <strong>245 Summer Street, Boston, MA</strong>.
                     </p>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
-                    <ul class="space-y-2">
+                    <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Legal</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-sm sm:text-base">
                         <li><a class="text-gray-400 hover:text-white transition-colors">Política de privacidad</a></li>
                         <li><a class="text-gray-400 hover:text-white transition-colors">Términos de servicio</a></li>
                         <li><a class="text-gray-400 hover:text-white transition-colors">Divulgación de riesgos</a></li>
@@ -656,17 +652,17 @@
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Contacto</h4>
-                    <ul class="space-y-2">
-                        <li class="text-gray-400">Soporte educativo</li>
-                        <li class="text-gray-400">Acceso a la comunidad</li>
-                        <li class="text-gray-400">Recursos de aprendizaje</li>
+                    <h4 class="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Contacto</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-sm sm:text-base text-gray-400">
+                        <li>Soporte educativo</li>
+                        <li>Acceso a la comunidad</li>
+                        <li>Recursos de aprendizaje</li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-500">
+            <div class="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
+                <p class="text-gray-500 text-xs sm:text-sm">
                     © 2026 Fidelity Investments. Todos los derechos reservados. | Marca educativa independiente — No afiliada a ninguna otra institución financiera. | Contenido educativo únicamente — No es asesoramiento de inversión.
                 </p>
             </div>
@@ -674,17 +670,18 @@
     </footer>
 
     <!-- Botón flotante de WhatsApp -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <button onclick="h2()" class="floating-whatsapp-button text-white px-6 py-4 rounded-full shadow-2xl animate-pulse-glow hover:animate-none transition-all duration-300 flex items-center space-x-3">
-            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+    <div class="fixed bottom-5 sm:bottom-6 right-5 sm:right-6 z-50">
+        <button onclick="h2()" class="floating-whatsapp-button text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-2xl animate-pulse-glow hover:animate-none transition-all duration-300 flex items-center space-x-2 sm:space-x-3 text-sm sm:text-base">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.683"/>
             </svg>
-            <span class="font-semibold">Únete ahora, conéctate por WhatsApp</span>
+            <span class="font-semibold hidden sm:inline">Únete ahora, conéctate por WhatsApp</span>
+            <span class="font-semibold sm:hidden">WhatsApp</span>
         </button>
     </div>
 
     <script>
-        // Detección y manejo del modo oscuro
+        // Dark mode detection
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
         }
@@ -696,7 +693,7 @@
             }
         });
 
-        // Desplazamiento suave para enlaces de navegación
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -710,7 +707,7 @@
             });
         });
 
-        // Animaciones en clics de botones
+        // Button click animation
         document.querySelectorAll('button').forEach(button => {
             button.addEventListener('click', function() {
                 this.classList.add('animate-scale-bounce');
@@ -720,10 +717,10 @@
             });
         });
 
-        // Observador de intersección para animaciones al desplazarse
+        // Intersection Observer for section animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -30px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -742,14 +739,13 @@
             observer.observe(section);
         });
 
-        // Animación mejorada del botón flotante
+        // Floating button animation
         const floatingButton = document.querySelector('.floating-whatsapp-button');
         if (floatingButton) {
             floatingButton.addEventListener('mouseenter', function() {
                 this.classList.remove('animate-pulse-glow');
                 this.classList.add('animate-float-gentle');
             });
-            
             floatingButton.addEventListener('mouseleave', function() {
                 this.classList.remove('animate-float-gentle');
                 this.classList.add('animate-pulse-glow');
